@@ -26,7 +26,6 @@ public class LoginPage extends BaseTest {
         } finally {
             System.out.println("home page is opened");
         }
-
     }
 
     @Test

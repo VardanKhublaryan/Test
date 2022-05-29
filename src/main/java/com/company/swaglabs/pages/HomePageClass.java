@@ -32,6 +32,18 @@ public class HomePageClass {
     private WebElement filtrButton;
     @FindBy(css = "[value='za']")
     private WebElement Za;
+    @FindBy(css = "[value='az']")
+    private WebElement Az;
+    @FindBy(className = "inventory_item_price")
+    private List<WebElement> itemsPrices;
+    @FindBy(css = "[value='lohi']")
+    private WebElement lowToHigh;
+    @FindBy(css = "[value='hilo']")
+    private WebElement HighToLow;
+    @FindBy(id = "add-to-cart-sauce-labs-backpack")
+    private WebElement addToCart;
+    @FindBy(className = "inventory_item_desc")
+    private List<WebElement> itemsDescriptions;
 
 
     public HomePageClass(WebDriver driver) {
@@ -40,31 +52,7 @@ public class HomePageClass {
 
     }
 
-    public WebElement getImage1() {
-        return image1;
-
-    }
-
-    public WebElement getImage2() {
-        return image2;
-    }
-
-    public WebElement getImage3() {
-        return image3;
-    }
-
-    public WebElement getImage4() {
-        return image4;
-    }
-
-    public WebElement getImage5() {
-        return image5;
-    }
-
-    public WebElement getImage6() {
-        return image6;
-    }
-    public  List<WebElement>  itemsImages(){
+    public List<WebElement> itemsImages() {
         List<WebElement> images = new ArrayList<>();
         images.add(image1);
         images.add(image2);
@@ -74,14 +62,40 @@ public class HomePageClass {
         images.add(image6);
         return images;
     }
-    public List<WebElement> itemNames(){
+
+    public List<WebElement> itemNames() {
         return itemsNames;
     }
-    public WebElement getFiltrButton(){
+
+    public WebElement getFiltrButton() {
         return filtrButton;
     }
-    public WebElement getZa(){
+
+    public WebElement getZa() {
         return Za;
+    }
+
+    public WebElement getAz() {
+        return Az;
+    }
+
+    public List<WebElement> getItemsPrices() {
+        return itemsPrices;
+    }
+
+    public WebElement getLowToHigh() {
+        return lowToHigh;
+    }
+
+    public WebElement getHighToLow() {
+        return HighToLow;
+    }
+
+    public WebElement getAddToCart() {
+        return addToCart;
+    }
+    public List<WebElement> getItemsDescriptions(){
+        return itemsDescriptions;
     }
 }
 

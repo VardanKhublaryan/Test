@@ -1,8 +1,8 @@
 
+import com.company.swaglabs.constants.ItemsTexts;
 import com.company.swaglabs.pages.BasePage;
 import com.company.swaglabs.pages.HomePageClass;
 import com.company.swaglabs.pages.LoginPageClass;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -59,20 +59,99 @@ public class HomePage extends BaseTest {
     }
 
     @Test
-    public void filter() {
+    public void itemsDescriptions(){
         HomePageClass homePageClass = new HomePageClass(getDriver());
+        try {
+            for (int i = 0; i < ItemsTexts.getItemsTexts().length; i++) {
+                Assert.assertEquals(homePageClass.getItemsDescriptions().get(i).getText(),ItemsTexts.getItemsTexts()[i].getText());
+            }
+        }catch (AssertionError e){
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void filterZa() {
+        HomePageClass homePageClass = new HomePageClass(getDriver());
+        homePageClass.getZa().click();
         for (int i = 1; i < homePageClass.itemNames().size(); i++) {
             WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
             wait.until(ExpectedConditions.visibilityOf(homePageClass.itemNames().get(i)));
             if (i != 0) {
                 int b = homePageClass.itemNames().get(i).getText().compareTo(homePageClass.itemNames().get(i - 1).getText());
-                if (b > 0) {
+                if (b <= 0) {
                     System.out.println(true);
                 } else {
                     System.out.println(false);
                 }
             }
-
         }
+    }
+
+    @Test
+    public void filterAz() {
+        HomePageClass homePageClass = new HomePageClass(getDriver());
+        homePageClass.getAz().click();
+        for (int i = 1; i < homePageClass.itemNames().size(); i++) {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.visibilityOf(homePageClass.itemNames().get(i)));
+            if (i != 0) {
+                int b = homePageClass.itemNames().get(i).getText().compareTo(homePageClass.itemNames().get(i - 1).getText());
+                if (b >= 0) {
+                    System.out.println(true);
+                } else {
+                    System.out.println(false);
+                }
+            }
+        }
+    }
+
+    @Test
+    public void filterLowToHigh() {
+        HomePageClass homePageClass = new HomePageClass(getDriver());
+        homePageClass.getLowToHigh().click();
+        for (int i = 1; i < homePageClass.getItemsPrices().size(); i++) {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.visibilityOf(homePageClass.getItemsPrices().get(i)));
+            double b = Double.parseDouble(homePageClass.getItemsPrices().get(i).getText().substring(1));
+            double a = Double.parseDouble(homePageClass.getItemsPrices().get(i - 1).getText().substring(1));
+            if (a <= b) {
+                System.out.println(true);
+            } else {
+                System.out.println(false);
+            }
+        }
+    }
+
+    @Test
+    public void filterHighToLow() {
+        HomePageClass homePageClass = new HomePageClass(getDriver());
+        homePageClass.getHighToLow().click();
+        for (int i = 1; i < homePageClass.getItemsPrices().size(); i++) {
+            new WebDriverWait(getDriver(), Duration.ofSeconds(2)).until(ExpectedConditions.visibilityOf(homePageClass.getItemsPrices().get(i)));
+
+            double b = Double.parseDouble(homePageClass.getItemsPrices().get(i).getText().substring(1));
+            double a = Double.parseDouble(homePageClass.getItemsPrices().get(i - 1).getText().substring(1));
+            if (a >= b) {
+                System.out.println(true);
+            } else {
+                System.out.println(false);
+            }
+        }
+    }
+
+    @Test
+    public void addToCart() {
+        HomePageClass homePageClass = new HomePageClass(getDriver());
+        try {
+            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.elementToBeClickable(homePageClass.getAddToCart()));
+            Assert.assertTrue(homePageClass.getAddToCart().isDisplayed());
+            homePageClass.getAddToCart().click();
+        } catch (Exception e) {
+            System.out.println("add to cart button is not working");
+        }
+
+
     }
 }

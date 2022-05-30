@@ -94,7 +94,8 @@ public class HomePageClass {
     public WebElement getAddToCart() {
         return addToCart;
     }
-    public List<WebElement> getItemsDescriptions(){
+
+    public List<WebElement> getItemsDescriptions() {
         return itemsDescriptions;
     }
 }

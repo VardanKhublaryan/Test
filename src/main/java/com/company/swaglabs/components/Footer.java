@@ -4,36 +4,44 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
 public class Footer {
     private WebDriver driver;
 
-    @FindBy(css = "'[target='_blank']'")
+    @FindBy(css = "[target='_blank']")
     private List<WebElement> socialLinks;
     @FindBy(className = "footer_robot")
     private WebElement footerRobot;
     @FindBy(className = "footer_copy")
     private WebElement footerText;
+    @FindBy(css = "[src='https://pbs.twimg.com/profile_banners/16672130/1630421106/1080x360']")
+    private WebElement twitterPage;
 
     public Footer(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    public void clickOnTwitter() {
-        this.socialLinks.get(0).click();
+    public WebElement getTwitter() {
+        return this.socialLinks.get(0);
     }
 
-    public void clickOnFaceBook() {
-        this.socialLinks.get(1).click();
+    public WebElement getFaceBook() {
+        return this.socialLinks.get(1);
     }
 
-    public void clickOnLinkedIn() {
-        this.socialLinks.get(2).click();
+    public WebElement getLinkedIn() {
+        return this.socialLinks.get(2);
     }
 
     public String footerTex() {
         return this.footerText.getText();
+    }
+
+    public WebElement getTwitterPage() {
+        return twitterPage;
     }
 }

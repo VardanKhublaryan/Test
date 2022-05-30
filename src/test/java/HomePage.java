@@ -1,4 +1,5 @@
 
+import com.company.swaglabs.components.Footer;
 import com.company.swaglabs.constants.ItemsTexts;
 import com.company.swaglabs.pages.BasePage;
 import com.company.swaglabs.pages.HomePageClass;
@@ -59,13 +60,25 @@ public class HomePage extends BaseTest {
     }
 
     @Test
-    public void itemsDescriptions(){
+    public void itemsDescriptions() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
         try {
             for (int i = 0; i < ItemsTexts.getItemsTexts().length; i++) {
-                Assert.assertEquals(homePageClass.getItemsDescriptions().get(i).getText(),ItemsTexts.getItemsTexts()[i].getText());
+                Assert.assertEquals(homePageClass.getItemsDescriptions().get(i).getText(), ItemsTexts.getItemsTexts()[i].getText());
             }
-        }catch (AssertionError e){
+        } catch (AssertionError e) {
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void itemPrices() {
+        HomePageClass homePageClass = new HomePageClass(getDriver());
+        try {
+            for (int i = 0; i < homePageClass.getItemsPrices().size(); i++) {
+                Assert.assertEquals(homePageClass.getItemsPrices().get(i).getText(), ItemsTexts.getItemsPrices()[i].getText());
+            }
+        } catch (AssertionError e) {
             System.out.println(e);
         }
     }
@@ -151,7 +164,5 @@ public class HomePage extends BaseTest {
         } catch (Exception e) {
             System.out.println("add to cart button is not working");
         }
-
-
     }
 }

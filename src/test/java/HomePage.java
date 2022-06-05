@@ -7,8 +7,8 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import static com.company.swaglabs.action.WrapActions.visibilityOf;
-import static com.company.swaglabs.constants.LogInData.PASSWORD;
-import static com.company.swaglabs.constants.LogInData.STANDARD_USER;
+import static com.company.swaglabs.constants.LogInData.*;
+
 
 
 public class HomePage extends BaseTest {
@@ -128,5 +128,6 @@ public class HomePage extends BaseTest {
         homePageClass.RemoveVisibilityOf();
         homePageClass.clickToRemove();
         homePageClass.addToCardVisibility();
+
     }
 }

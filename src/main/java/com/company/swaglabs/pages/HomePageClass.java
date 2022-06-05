@@ -1,18 +1,16 @@
 package com.company.swaglabs.pages;
 
-import com.company.swaglabs.components.Header;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageClass {
+import static com.company.swaglabs.action.WrapActions.*;
+
+public class HomePageClass extends BasePage {
     private WebDriver driver;
     @FindBy(xpath = "//img[@src='/static/media/sauce-backpack-1200x1500.34e7aa42.jpg']")
     private WebElement image1;
@@ -39,17 +37,25 @@ public class HomePageClass {
     @FindBy(css = "[value='lohi']")
     private WebElement lowToHigh;
     @FindBy(css = "[value='hilo']")
-    private WebElement HighToLow;
+    private WebElement highToLow;
     @FindBy(id = "add-to-cart-sauce-labs-backpack")
     private WebElement addToCart;
     @FindBy(className = "inventory_item_desc")
     private List<WebElement> itemsDescriptions;
+    @FindBy(id = ("remove-sauce-labs-backpack"))
+    private WebElement remove;
+    private BasePage basePage;
 
 
     public HomePageClass(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        basePage = new BasePage(this.driver);
+    }
 
+    public void allItemsVisibilityOf() {
+        visibilityOf(basePage.getHeader().getAllItems());
     }
 
     public List<WebElement> itemsImages() {
@@ -71,32 +77,44 @@ public class HomePageClass {
         return filtrButton;
     }
 
-    public WebElement getZa() {
-        return Za;
+    public void clickToZa() {
+        click(Za);
     }
 
-    public WebElement getAz() {
-        return Az;
+    public void clickToAz() {
+        click(Az);
     }
 
     public List<WebElement> getItemsPrices() {
         return itemsPrices;
     }
 
-    public WebElement getLowToHigh() {
-        return lowToHigh;
+    public void clickToLowToHigh() {
+        click(lowToHigh);
     }
 
-    public WebElement getHighToLow() {
-        return HighToLow;
+    public void clickToHighToLow() {
+        click(highToLow);
     }
 
-    public WebElement getAddToCart() {
-        return addToCart;
+    public void clickToAddToCart() {
+        click(addToCart);
     }
 
     public List<WebElement> getItemsDescriptions() {
         return itemsDescriptions;
+    }
+
+    public void addToCardVisibility() {
+        visibilityOf(addToCart);
+    }
+
+    public void RemoveVisibilityOf() {
+        visibilityOf(remove);
+    }
+
+    public void clickToRemove() {
+        click(remove);
     }
 }
 

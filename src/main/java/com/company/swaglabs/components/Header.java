@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static com.company.swaglabs.action.WrapActions.visibilityOf;
+
 
 public class Header {
     private WebDriver driver;
@@ -28,8 +30,11 @@ public class Header {
         this.menuBar.click();
     }
 
-    public WebElement getMenuBar() {
-        return menuBar;
+    public boolean menuBarIsVisibility() {
+        if (visibilityOf(menuBar)) {
+            return true;
+        }
+        return false;
     }
 
     public void clickOnShopContainer() {

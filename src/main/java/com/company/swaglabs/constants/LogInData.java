@@ -6,7 +6,7 @@ public enum LogInData {
 
     private String userName;
 
-     LogInData(String userName) {
+    LogInData(String userName) {
         this.userName = userName;
     }
 

@@ -1,102 +1,75 @@
-
-import com.company.swaglabs.components.Footer;
 import com.company.swaglabs.constants.ItemsTexts;
 import com.company.swaglabs.pages.BasePage;
 import com.company.swaglabs.pages.HomePageClass;
 import com.company.swaglabs.pages.LoginPageClass;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-import java.time.Duration;
-
-import static com.company.swaglabs.constants.LogInData.*;
+import static com.company.swaglabs.action.WrapActions.visibilityOf;
+import static com.company.swaglabs.constants.LogInData.PASSWORD;
+import static com.company.swaglabs.constants.LogInData.STANDARD_USER;
 
 
 public class HomePage extends BaseTest {
 
+
     @BeforeMethod
     public void login() {
         LoginPageClass loginPageClass = new LoginPageClass(getDriver());
-        try {
-            loginPageClass.login(STANDARD_USER, PASSWORD);
-        } catch (Exception e) {
-            System.out.println("login is failed");
-        }
+        loginPageClass.login(STANDARD_USER, PASSWORD);
     }
 
     @Test
-    public void ItemsImages() {
+    public void itemsImages() {
+        SoftAssert softAssert = new SoftAssert();
         HomePageClass homePage = new HomePageClass(getDriver());
-        homePage.itemsImages();
         for (int i = 0; i < homePage.itemsImages().size(); i++) {
-            try {
-                homePage.itemsImages().get(i).isDisplayed();
-            } catch (Exception e) {
-                System.out.println("image " + (i + 1) + " is not displayed");
-            }
+            softAssert.assertTrue(visibilityOf(homePage.itemsImages().get(i)), "image " + (i + 1) + " is not displayed");
         }
+        softAssert.assertAll();
     }
 
     @Test
     public void menuBar() {
-        BasePage basePage = new BasePage(getDriver());
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.visibilityOf(basePage.getHeader().getMenuBar()));
-        try {
-            Assert.assertTrue(basePage.getHeader().getMenuBar().isDisplayed(), "menu bar is not displayed");
-            basePage.getHeader().clickOnMenuBar();
-        } catch (AssertionError e) {
-            System.out.println("menu bar is not displayed");
-        }
-        try {
-            wait.until(ExpectedConditions.visibilityOf(basePage.getHeader().getAllItems()));
-            Assert.assertTrue(basePage.getHeader().getAllItems().isDisplayed(), "allItems button is not displayed");
-        } catch (AssertionError e) {
-            System.out.println("allItems button is not displayed");
-        }
+        HomePageClass homePageClass = new HomePageClass(getDriver());
+        BasePage basePage = new BasePage(driver);
+        basePage.getHeader().menuBarIsVisibility();
+        basePage.getHeader().clickOnMenuBar();
+        homePageClass.allItemsVisibilityOf();
     }
 
     @Test
     public void itemsDescriptions() {
+        SoftAssert softAssert = new SoftAssert();
         HomePageClass homePageClass = new HomePageClass(getDriver());
-        try {
-            for (int i = 0; i < ItemsTexts.getItemsTexts().length; i++) {
-                Assert.assertEquals(homePageClass.getItemsDescriptions().get(i).getText(), ItemsTexts.getItemsTexts()[i].getText());
-            }
-        } catch (AssertionError e) {
-            System.out.println(e);
+        for (int i = 0; i < ItemsTexts.getItemsTexts().length; i++) {
+            softAssert.assertEquals(homePageClass.getItemsDescriptions().get(i).getText(), ItemsTexts.getItemsTexts()[i].getText(), "item " + i + " text is wrong");
         }
+        softAssert.assertAll();
     }
 
     @Test
     public void itemPrices() {
+        SoftAssert softAssert = new SoftAssert();
         HomePageClass homePageClass = new HomePageClass(getDriver());
-        try {
-            for (int i = 0; i < homePageClass.getItemsPrices().size(); i++) {
-                Assert.assertEquals(homePageClass.getItemsPrices().get(i).getText(), ItemsTexts.getItemsPrices()[i].getText());
-            }
-        } catch (AssertionError e) {
-            System.out.println(e);
+        for (int i = 0; i < homePageClass.getItemsPrices().size(); i++) {
+            softAssert.assertEquals(homePageClass.getItemsPrices().get(i).getText(), ItemsTexts.getItemsPrices()[i].getText(), "item " + i + " price is wrong");
         }
+        softAssert.assertAll();
     }
 
     @Test
     public void filterZa() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
-        homePageClass.getZa().click();
+        homePageClass.clickToZa();
         for (int i = 1; i < homePageClass.itemNames().size(); i++) {
-            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
-            wait.until(ExpectedConditions.visibilityOf(homePageClass.itemNames().get(i)));
-            if (i != 0) {
-                int b = homePageClass.itemNames().get(i).getText().compareTo(homePageClass.itemNames().get(i - 1).getText());
-                if (b <= 0) {
-                    System.out.println(true);
-                } else {
-                    System.out.println(false);
-                }
+            visibilityOf(homePageClass.itemNames().get(i));
+            int b = homePageClass.itemNames().get(i).getText().compareTo(homePageClass.itemNames().get(i - 1).getText());
+            if (b <= 0) {
+                System.out.println(true);
+            } else {
+                System.out.println(false);
             }
         }
     }
@@ -104,17 +77,14 @@ public class HomePage extends BaseTest {
     @Test
     public void filterAz() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
-        homePageClass.getAz().click();
+        homePageClass.clickToAz();
         for (int i = 1; i < homePageClass.itemNames().size(); i++) {
-            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
-            wait.until(ExpectedConditions.visibilityOf(homePageClass.itemNames().get(i)));
-            if (i != 0) {
-                int b = homePageClass.itemNames().get(i).getText().compareTo(homePageClass.itemNames().get(i - 1).getText());
-                if (b >= 0) {
-                    System.out.println(true);
-                } else {
-                    System.out.println(false);
-                }
+            visibilityOf(homePageClass.itemNames().get(i));
+            int b = homePageClass.itemNames().get(i).getText().compareTo(homePageClass.itemNames().get(i - 1).getText());
+            if (b >= 0) {
+                System.out.println(true);
+            } else {
+                System.out.println(false);
             }
         }
     }
@@ -122,10 +92,9 @@ public class HomePage extends BaseTest {
     @Test
     public void filterLowToHigh() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
-        homePageClass.getLowToHigh().click();
+        homePageClass.clickToLowToHigh();
         for (int i = 1; i < homePageClass.getItemsPrices().size(); i++) {
-            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
-            wait.until(ExpectedConditions.visibilityOf(homePageClass.getItemsPrices().get(i)));
+            visibilityOf(homePageClass.getItemsPrices().get(i));
             double b = Double.parseDouble(homePageClass.getItemsPrices().get(i).getText().substring(1));
             double a = Double.parseDouble(homePageClass.getItemsPrices().get(i - 1).getText().substring(1));
             if (a <= b) {
@@ -139,10 +108,9 @@ public class HomePage extends BaseTest {
     @Test
     public void filterHighToLow() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
-        homePageClass.getHighToLow().click();
+        homePageClass.clickToHighToLow();
         for (int i = 1; i < homePageClass.getItemsPrices().size(); i++) {
-            new WebDriverWait(getDriver(), Duration.ofSeconds(2)).until(ExpectedConditions.visibilityOf(homePageClass.getItemsPrices().get(i)));
-
+            visibilityOf(homePageClass.getItemsPrices().get(i));
             double b = Double.parseDouble(homePageClass.getItemsPrices().get(i).getText().substring(1));
             double a = Double.parseDouble(homePageClass.getItemsPrices().get(i - 1).getText().substring(1));
             if (a >= b) {
@@ -156,13 +124,9 @@ public class HomePage extends BaseTest {
     @Test
     public void addToCart() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
-        try {
-            WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(2));
-            wait.until(ExpectedConditions.elementToBeClickable(homePageClass.getAddToCart()));
-            Assert.assertTrue(homePageClass.getAddToCart().isDisplayed());
-            homePageClass.getAddToCart().click();
-        } catch (Exception e) {
-            System.out.println("add to cart button is not working");
-        }
+        homePageClass.clickToAddToCart();
+        homePageClass.RemoveVisibilityOf();
+        homePageClass.clickToRemove();
+        homePageClass.addToCardVisibility();
     }
 }

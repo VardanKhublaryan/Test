@@ -1,14 +1,14 @@
 package com.company.swaglabs.pages;
 
+import com.company.swaglabs.action.WrapActions;
 import com.company.swaglabs.constants.LogInData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+import static com.company.swaglabs.action.WrapActions.*;
+
 
 public class LoginPageClass {
     WebDriver driver;
@@ -26,33 +26,37 @@ public class LoginPageClass {
     @FindBy(className = "error-message-container")
     private WebElement loginError;
 
+    private WrapActions wrapActions;
+
 
     public LoginPageClass(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        wrapActions = new WrapActions(driver);
     }
 
     public void login(LogInData userName, LogInData password) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOf(loginField));
-        loginField.sendKeys(userName.toString());
-        wait.until(ExpectedConditions.visibilityOf(passwordField));
-        passwordField.sendKeys(password.toString());
-        wait.until(ExpectedConditions.elementToBeClickable(loginButton));
-        loginButton.click();
+        fill(loginField, userName.toString());
+        fill(passwordField, password.toString());
+        click(loginButton);
     }
 
-    public WebElement getLoginPageIcon() {
-        return icon;
+    public boolean loginPageIconVisibilityOf() {
+        if (visibilityOf(icon)) {
+            return true;
+        }
+        return false;
     }
 
-    public WebElement getLogo() {
-        return logo;
-
+    public boolean logoVisibilityOf() {
+        if (visibilityOf(logo)) {
+            return true;
+        }
+        return false;
     }
 
     public String getErrorMsg() {
-        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(loginError));
+        visibilityOf(loginError);
         return loginError.getText();
     }
 

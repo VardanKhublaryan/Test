@@ -1,7 +1,5 @@
 package com.company.swaglabs.constants;
 
-import java.util.Random;
-
 public enum ItemsTexts {
     ITEM1("carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection."),
     ITEM2("A red light isn't the desired state in testing but it sure helps when riding your bike at night. Water-resistant with 3 lighting modes, 1 AAA battery included."),
@@ -22,7 +20,8 @@ public enum ItemsTexts {
     ItemsTexts(String text) {
         this.text = text;
     }
-    public String getText(){
+
+    public String getText() {
         return text;
     }
 
@@ -30,8 +29,9 @@ public enum ItemsTexts {
         ItemsTexts[] itemsTextsArr = {ITEM1, ITEM2, ITEM3, ITEM4, ITEM5, ITEM6};
         return itemsTextsArr;
     }
-    public static ItemsTexts[] getItemsPrices(){
-        ItemsTexts[] itemPrices = {ITEMPRICE1,ITEMPRICE2,ITEMPRICE3,ITEMPRICE4,ITEMPRICE5,ITEMPRICE6};
+
+    public static ItemsTexts[] getItemsPrices() {
+        ItemsTexts[] itemPrices = {ITEMPRICE1, ITEMPRICE2, ITEMPRICE3, ITEMPRICE4, ITEMPRICE5, ITEMPRICE6};
         return itemPrices;
     }
 }

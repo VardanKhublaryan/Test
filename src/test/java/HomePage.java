@@ -2,13 +2,13 @@ import com.company.swaglabs.constants.ItemsTexts;
 import com.company.swaglabs.pages.BasePage;
 import com.company.swaglabs.pages.HomePageClass;
 import com.company.swaglabs.pages.LoginPageClass;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static com.company.swaglabs.action.WrapActions.visibilityOf;
+import static com.company.swaglabs.action.WrapActions.isDisplayed;
 import static com.company.swaglabs.constants.LogInData.*;
-
 
 
 public class HomePage extends BaseTest {
@@ -24,10 +24,15 @@ public class HomePage extends BaseTest {
     public void itemsImages() {
         SoftAssert softAssert = new SoftAssert();
         HomePageClass homePage = new HomePageClass(getDriver());
-        for (int i = 0; i < homePage.itemsImages().size(); i++) {
-            softAssert.assertTrue(visibilityOf(homePage.itemsImages().get(i)), "image " + (i + 1) + " is not displayed");
+        for (int i = 0; i < homePage.imageItemsCount(); i++) {
+            softAssert.assertTrue(homePage.isImageItemDisplayed(i), "image " + (i + 1) + " is not displayed");
         }
         softAssert.assertAll();
+    }
+    @Test
+    public void productImageItems(){
+        HomePageClass homePageClass =new HomePageClass(getDriver());
+        Assert.assertTrue(homePageClass.compareImageItems());
     }
 
     @Test
@@ -64,7 +69,7 @@ public class HomePage extends BaseTest {
         HomePageClass homePageClass = new HomePageClass(getDriver());
         homePageClass.clickToZa();
         for (int i = 1; i < homePageClass.itemNames().size(); i++) {
-            visibilityOf(homePageClass.itemNames().get(i));
+            isDisplayed(homePageClass.itemNames().get(i));
             int b = homePageClass.itemNames().get(i).getText().compareTo(homePageClass.itemNames().get(i - 1).getText());
             if (b <= 0) {
                 System.out.println(true);
@@ -79,7 +84,7 @@ public class HomePage extends BaseTest {
         HomePageClass homePageClass = new HomePageClass(getDriver());
         homePageClass.clickToAz();
         for (int i = 1; i < homePageClass.itemNames().size(); i++) {
-            visibilityOf(homePageClass.itemNames().get(i));
+            isDisplayed(homePageClass.itemNames().get(i));
             int b = homePageClass.itemNames().get(i).getText().compareTo(homePageClass.itemNames().get(i - 1).getText());
             if (b >= 0) {
                 System.out.println(true);
@@ -94,7 +99,7 @@ public class HomePage extends BaseTest {
         HomePageClass homePageClass = new HomePageClass(getDriver());
         homePageClass.clickToLowToHigh();
         for (int i = 1; i < homePageClass.getItemsPrices().size(); i++) {
-            visibilityOf(homePageClass.getItemsPrices().get(i));
+            isDisplayed(homePageClass.getItemsPrices().get(i));
             double b = Double.parseDouble(homePageClass.getItemsPrices().get(i).getText().substring(1));
             double a = Double.parseDouble(homePageClass.getItemsPrices().get(i - 1).getText().substring(1));
             if (a <= b) {
@@ -110,7 +115,7 @@ public class HomePage extends BaseTest {
         HomePageClass homePageClass = new HomePageClass(getDriver());
         homePageClass.clickToHighToLow();
         for (int i = 1; i < homePageClass.getItemsPrices().size(); i++) {
-            visibilityOf(homePageClass.getItemsPrices().get(i));
+            isDisplayed(homePageClass.getItemsPrices().get(i));
             double b = Double.parseDouble(homePageClass.getItemsPrices().get(i).getText().substring(1));
             double a = Double.parseDouble(homePageClass.getItemsPrices().get(i - 1).getText().substring(1));
             if (a >= b) {
@@ -128,6 +133,12 @@ public class HomePage extends BaseTest {
         homePageClass.RemoveVisibilityOf();
         homePageClass.clickToRemove();
         homePageClass.addToCardVisibility();
+    }
 
+    @Test
+    public void footer() {
+        BasePage basePage = new BasePage(getDriver());
+        basePage.getFooter().FooterRobotvisibilitiOf();
+        Assert.assertEquals(basePage.getFooter().footerTex(), FOOTER_TEXT.toString());
     }
 }

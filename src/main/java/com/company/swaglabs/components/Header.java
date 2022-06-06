@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.company.swaglabs.action.WrapActions.visibilityOf;
+import static com.company.swaglabs.action.WrapActions.*;
 
 
 public class Header {
@@ -31,7 +31,7 @@ public class Header {
     }
 
     public boolean menuBarIsVisibility() {
-        if (visibilityOf(menuBar)) {
+        if (isDisplayed(menuBar)) {
             return true;
         }
         return false;

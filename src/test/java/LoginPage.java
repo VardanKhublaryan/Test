@@ -21,6 +21,13 @@ public class LoginPage extends BaseTest {
         LoginPageClass loginPage = new LoginPageClass(getDriver());
         Assert.assertTrue(loginPage.loginPageIconVisibilityOf(), "icon not displayed");
         Assert.assertTrue(loginPage.logoVisibilityOf(), "logo is not displayed");
+        loginPage.zoomOut();
+    }
+
+    @Test
+    public void zoomOut(){
+        LoginPageClass loginPage = new LoginPageClass(getDriver());
+        loginPage.zoomOut();
     }
 
     @Test

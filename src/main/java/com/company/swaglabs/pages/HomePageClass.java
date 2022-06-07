@@ -23,16 +23,16 @@ import static com.company.swaglabs.action.WrapActions.isDisplayed;
 
 public class HomePageClass extends BasePage {
     private WebDriver driver;
-    @FindBy(css = "img[class=inventory_item_img]")
+    @FindBy(css = "div[class='inventory_item_img']")
     private List<WebElement> imageItems;
     @FindBy(className = "inventory_item_name")
     private List<WebElement> itemsNames;
     @FindBy(className = "product_sort_container")
     private WebElement filtrButton;
     @FindBy(css = "[value='za']")
-    private WebElement Za;
+    private WebElement zToa;
     @FindBy(css = "[value='az']")
-    private WebElement Az;
+    private WebElement aToz;
     @FindBy(className = "inventory_item_price")
     private List<WebElement> itemsPrices;
     @FindBy(css = "[value='lohi']")
@@ -68,24 +68,36 @@ public class HomePageClass extends BasePage {
         return imageItems.size();
     }
 
-    public List<WebElement> itemNames() {
-        return itemsNames;
+    public int itemNamesSize() {
+        return itemsNames.size();
+    }
+
+    public boolean itemNamesIsDisplayed(int index) {
+        return isDisplayed(itemsNames.get(index));
+    }
+
+    public String itemNamesText(int index) {
+        return itemsNames.get(index).getText();
     }
 
     public WebElement getFiltrButton() {
         return filtrButton;
     }
 
-    public void clickToZa() {
-        click(Za);
+    public void clickToZtoA() {
+        click(zToa);
     }
 
-    public void clickToAz() {
-        click(Az);
+    public void clickToAtoZ() {
+        click(aToz);
     }
 
-    public List<WebElement> getItemsPrices() {
-        return itemsPrices;
+    public int itemPricesSize() {
+        return itemsPrices.size();
+    }
+
+    public String itemsPricesText(int index) {
+        return itemsPrices.get(index).getText();
     }
 
     public void clickToLowToHigh() {
@@ -100,8 +112,8 @@ public class HomePageClass extends BasePage {
         click(addToCart);
     }
 
-    public List<WebElement> getItemsDescriptions() {
-        return itemsDescriptions;
+    public String itemsDescriptionsText(int index) {
+        return itemsDescriptions.get(index).getText();
     }
 
     public void addToCardVisibility() {
@@ -116,14 +128,14 @@ public class HomePageClass extends BasePage {
         click(remove);
     }
 
-    public boolean compareImageItems(){
+    public boolean compareImageItems() {
         Random random = new Random();
         int size = imageItems.size();
         int randomIndex1 = random.nextInt(size);
         int randomIndex2 = random.nextInt(size);
+
         Screenshot screenshot1 = new AShot().takeScreenshot(driver, imageItems.get(randomIndex1));
         Screenshot screenshot2 = new AShot().takeScreenshot(driver, imageItems.get(randomIndex2));
-
 
         BufferedImage randomImageItem1 = screenshot1.getImage();
         BufferedImage randomImageItem2 = screenshot2.getImage();
@@ -134,6 +146,7 @@ public class HomePageClass extends BasePage {
         return diff.hasDiff();
 
     }
+
     public static void main(String[] args) throws IOException {
 
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");

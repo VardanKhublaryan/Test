@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static com.company.swaglabs.action.WrapActions.isDisplayed;
 import static com.company.swaglabs.constants.LogInData.*;
 
 
@@ -49,7 +48,7 @@ public class HomePage extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         HomePageClass homePageClass = new HomePageClass(getDriver());
         for (int i = 0; i < ItemsTexts.getItemsTexts().length; i++) {
-            softAssert.assertEquals(homePageClass.getItemsDescriptions().get(i).getText(), ItemsTexts.getItemsTexts()[i].getText(), "item " + i + " text is wrong");
+            softAssert.assertEquals(homePageClass.itemsDescriptionsText(i), ItemsTexts.getItemsTexts()[i].getText(), "item " + i + " text is wrong");
         }
         softAssert.assertAll();
     }
@@ -58,8 +57,8 @@ public class HomePage extends BaseTest {
     public void itemPrices() {
         SoftAssert softAssert = new SoftAssert();
         HomePageClass homePageClass = new HomePageClass(getDriver());
-        for (int i = 0; i < homePageClass.getItemsPrices().size(); i++) {
-            softAssert.assertEquals(homePageClass.getItemsPrices().get(i).getText(), ItemsTexts.getItemsPrices()[i].getText(), "item " + i + " price is wrong");
+        for (int i = 0; i < homePageClass.itemPricesSize(); i++) {
+            softAssert.assertEquals(homePageClass.itemsPricesText(i), ItemsTexts.getItemsPrices()[i].getText(), "item " + i + " price is wrong");
         }
         softAssert.assertAll();
     }
@@ -67,63 +66,53 @@ public class HomePage extends BaseTest {
     @Test
     public void filterZa() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
-        homePageClass.clickToZa();
-        for (int i = 1; i < homePageClass.itemNames().size(); i++) {
-            isDisplayed(homePageClass.itemNames().get(i));
-            int b = homePageClass.itemNames().get(i).getText().compareTo(homePageClass.itemNames().get(i - 1).getText());
-            if (b <= 0) {
-                System.out.println(true);
-            } else {
-                System.out.println(false);
-            }
+        SoftAssert softAssert = new SoftAssert();
+        homePageClass.clickToZtoA();
+        for (int i = 1; i < homePageClass.itemNamesSize(); i++) {
+            homePageClass.itemNamesIsDisplayed(i);
+            int b = homePageClass.itemNamesText(i).compareTo(homePageClass.itemNamesText(i - 1));
+            softAssert.assertTrue(b <= 0, "false");
         }
+        softAssert.assertAll();
     }
 
     @Test
     public void filterAz() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
-        homePageClass.clickToAz();
-        for (int i = 1; i < homePageClass.itemNames().size(); i++) {
-            isDisplayed(homePageClass.itemNames().get(i));
-            int b = homePageClass.itemNames().get(i).getText().compareTo(homePageClass.itemNames().get(i - 1).getText());
-            if (b >= 0) {
-                System.out.println(true);
-            } else {
-                System.out.println(false);
-            }
+        SoftAssert softAssert = new SoftAssert();
+        homePageClass.clickToAtoZ();
+        for (int i = 1; i < homePageClass.itemNamesSize(); i++) {
+            homePageClass.itemNamesIsDisplayed(i);
+            int b = homePageClass.itemNamesText(i).compareTo(homePageClass.itemNamesText(i - 1));
+            softAssert.assertTrue(b >= 0, "false");
         }
+        softAssert.assertAll();
     }
 
     @Test
     public void filterLowToHigh() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
+        SoftAssert softAssert = new SoftAssert();
         homePageClass.clickToLowToHigh();
-        for (int i = 1; i < homePageClass.getItemsPrices().size(); i++) {
-            isDisplayed(homePageClass.getItemsPrices().get(i));
-            double b = Double.parseDouble(homePageClass.getItemsPrices().get(i).getText().substring(1));
-            double a = Double.parseDouble(homePageClass.getItemsPrices().get(i - 1).getText().substring(1));
-            if (a <= b) {
-                System.out.println(true);
-            } else {
-                System.out.println(false);
-            }
+        for (int i = 1; i < homePageClass.itemPricesSize(); i++) {
+            double b = Double.parseDouble(homePageClass.itemsPricesText(i).substring(1));
+            double a = Double.parseDouble(homePageClass.itemsPricesText((i - 1)).substring(1));
+            softAssert.assertTrue(a <= b, "false");
         }
+        softAssert.assertAll();
     }
 
     @Test
     public void filterHighToLow() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
+        SoftAssert softAssert = new SoftAssert();
         homePageClass.clickToHighToLow();
-        for (int i = 1; i < homePageClass.getItemsPrices().size(); i++) {
-            isDisplayed(homePageClass.getItemsPrices().get(i));
-            double b = Double.parseDouble(homePageClass.getItemsPrices().get(i).getText().substring(1));
-            double a = Double.parseDouble(homePageClass.getItemsPrices().get(i - 1).getText().substring(1));
-            if (a >= b) {
-                System.out.println(true);
-            } else {
-                System.out.println(false);
-            }
+        for (int i = 1; i < homePageClass.itemPricesSize(); i++) {
+            double b = Double.parseDouble(homePageClass.itemsPricesText(i).substring(1));
+            double a = Double.parseDouble(homePageClass.itemsPricesText(i - 1).substring(1));
+            softAssert.assertTrue(a >= b, "false");
         }
+        softAssert.assertAll();
     }
 
     @Test

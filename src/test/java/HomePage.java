@@ -28,6 +28,7 @@ public class HomePage extends BaseTest {
         }
         softAssert.assertAll();
     }
+
     @Test
     public void productImageItems(){
         HomePageClass homePageClass =new HomePageClass(getDriver());
@@ -64,7 +65,7 @@ public class HomePage extends BaseTest {
     }
 
     @Test
-    public void filterZa() {
+    public void filterZtoA() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
         SoftAssert softAssert = new SoftAssert();
         homePageClass.clickToZtoA();
@@ -77,7 +78,7 @@ public class HomePage extends BaseTest {
     }
 
     @Test
-    public void filterAz() {
+    public void filterAtoZ() {
         HomePageClass homePageClass = new HomePageClass(getDriver());
         SoftAssert softAssert = new SoftAssert();
         homePageClass.clickToAtoZ();

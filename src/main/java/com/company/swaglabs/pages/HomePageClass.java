@@ -10,12 +10,15 @@ import ru.yandex.qatools.ashot.comparison.ImageDiff;
 import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-import static com.company.swaglabs.action.WrapActions.click;
-import static com.company.swaglabs.action.WrapActions.isDisplayed;
+import static com.company.swaglabs.utils.CustomWebElement.click;
+import static com.company.swaglabs.utils.CustomWebElement.isDisplayed;
 
 public class HomePageClass extends BasePage {
     private WebDriver driver;
@@ -139,10 +142,26 @@ public class HomePageClass extends BasePage {
         ImageDiffer imgDiff = new ImageDiffer();
         isDisplayed(imageItems.get(randomIndex1));
         isDisplayed(imageItems.get(randomIndex2));
-        ImageDiff diff = imgDiff.makeDiff(randomImageItem1, randomImageItem2);
+        ImageDiff diff = imgDiff.makeDiff(randomImageItem1, randomImageItem2).withDiffSizeTrigger(20);
+        BufferedImage diffImage = diff.getDiffImage();
+        try {
+            ImageIO.write(diffImage, "PNG", new File("C:\\Users\\user\\Pictures\\diff.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return diff.hasDiff();
 
+    }
+
+    @Override
+    protected void load() {
+
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        super.isLoaded();
     }
 
 //    public static void main(String[] args) throws IOException {

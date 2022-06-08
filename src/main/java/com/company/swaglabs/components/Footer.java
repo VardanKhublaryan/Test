@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-import static com.company.swaglabs.action.WrapActions.*;
+import static com.company.swaglabs.utils.CustomWebElement.*;
 
 public class Footer {
     private WebDriver driver;

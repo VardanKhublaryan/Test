@@ -1,4 +1,4 @@
-package com.company.swaglabs.action;
+package com.company.swaglabs.utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,11 +7,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class WrapActions {
+public class CustomWebElement {
     private WebDriver driver;
     private static WebDriverWait wait;
 
-    public WrapActions(WebDriver driver) {
+    public CustomWebElement(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
     }

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.company.swaglabs.action.WrapActions.*;
+import static com.company.swaglabs.utils.CustomWebElement.*;
 
 
 public class Header {

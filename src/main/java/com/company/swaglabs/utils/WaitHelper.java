@@ -37,21 +37,15 @@ public class WaitHelper {
                 }
             }
         };
-
-
-
-
-
         return wait.until(jQueryLoad);
-
     }
-    public static boolean waitForJStoLoad(WebDriver driver){
+
+    public static boolean waitForJStoLoad(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT));
-                ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
+        ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver driver) {
                 return ((JavascriptExecutor) driver).executeScript("return document.readyState")
-
                         .toString().equals("complete");
 
             }

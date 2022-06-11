@@ -66,16 +66,14 @@ public class LoginPageClass extends LoadableComponent<LoginPageClass> {
     public void zoomOut() {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("document.body.style.zoom = '1.5'");
-
     }
 
     @Override
     protected void load() {
-
     }
 
     @Override
     protected void isLoaded() throws Error {
-
     }
+
 }

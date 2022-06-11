@@ -12,17 +12,19 @@ import static com.company.swaglabs.constants.LogInData.*;
 
 public class HomePage extends BaseTest {
 
-
     @BeforeMethod
     public void login() {
-        LoginPageClass loginPageClass = new LoginPageClass(getDriver());
-        loginPageClass.login(PROBLEM_USER, PASSWORD);
+        LoginPageClass loginPageClass = new LoginPageClass(driver);
+        loginPageClass.login(STANDARD_USER, PASSWORD);
+        HomePageClass homePageClass = new HomePageClass(driver);
+        homePageClass.get();
+
     }
 
-    @Test
+    @Test(groups = "a")
     public void itemsImages() {
         SoftAssert softAssert = new SoftAssert();
-        HomePageClass homePage = new HomePageClass(getDriver());
+        HomePageClass homePage = new HomePageClass(driver);
         for (int i = 0; i < homePage.imageItemsCount(); i++) {
             softAssert.assertTrue(homePage.isImageItemDisplayed(i), "image " + (i + 1) + " is not displayed");
         }
@@ -30,15 +32,15 @@ public class HomePage extends BaseTest {
     }
 
     @Test
-    public void productImageItems(){
-        HomePageClass homePageClass =new HomePageClass(getDriver());
+    public void productImageItems() {
+        HomePageClass homePageClass = new HomePageClass(driver);
         Assert.assertTrue(homePageClass.compareImageItems());
     }
 
     @Test
     public void menuBar() {
-        HomePageClass homePageClass = new HomePageClass(getDriver());
-        BasePage basePage = new BasePage(driver);
+        HomePageClass homePageClass = new HomePageClass(driver);
+        BasePage basePage = new BasePage();
         basePage.getHeader().menuBarIsVisibility();
         basePage.getHeader().clickOnMenuBar();
         homePageClass.allItemsVisibilityOf();
@@ -47,7 +49,7 @@ public class HomePage extends BaseTest {
     @Test
     public void itemsDescriptions() {
         SoftAssert softAssert = new SoftAssert();
-        HomePageClass homePageClass = new HomePageClass(getDriver());
+        HomePageClass homePageClass = new HomePageClass(driver);
         for (int i = 0; i < ItemsTexts.getItemsTexts().length; i++) {
             softAssert.assertEquals(homePageClass.itemsDescriptionsText(i), ItemsTexts.getItemsTexts()[i].getText(), "item " + i + " text is wrong");
         }
@@ -57,16 +59,16 @@ public class HomePage extends BaseTest {
     @Test
     public void itemPrices() {
         SoftAssert softAssert = new SoftAssert();
-        HomePageClass homePageClass = new HomePageClass(getDriver());
+        HomePageClass homePageClass = new HomePageClass(driver);
         for (int i = 0; i < homePageClass.itemPricesSize(); i++) {
             softAssert.assertEquals(homePageClass.itemsPricesText(i), ItemsTexts.getItemsPrices()[i].getText(), "item " + i + " price is wrong");
         }
         softAssert.assertAll();
     }
 
-    @Test
+    @Test()
     public void filterZtoA() {
-        HomePageClass homePageClass = new HomePageClass(getDriver());
+        HomePageClass homePageClass = new HomePageClass(driver);
         SoftAssert softAssert = new SoftAssert();
         homePageClass.clickToZtoA();
         for (int i = 1; i < homePageClass.itemNamesSize(); i++) {
@@ -79,7 +81,7 @@ public class HomePage extends BaseTest {
 
     @Test
     public void filterAtoZ() {
-        HomePageClass homePageClass = new HomePageClass(getDriver());
+        HomePageClass homePageClass = new HomePageClass(driver);
         SoftAssert softAssert = new SoftAssert();
         homePageClass.clickToAtoZ();
         for (int i = 1; i < homePageClass.itemNamesSize(); i++) {
@@ -92,7 +94,7 @@ public class HomePage extends BaseTest {
 
     @Test
     public void filterLowToHigh() {
-        HomePageClass homePageClass = new HomePageClass(getDriver());
+        HomePageClass homePageClass = new HomePageClass(driver);
         SoftAssert softAssert = new SoftAssert();
         homePageClass.clickToLowToHigh();
         for (int i = 1; i < homePageClass.itemPricesSize(); i++) {
@@ -105,7 +107,7 @@ public class HomePage extends BaseTest {
 
     @Test
     public void filterHighToLow() {
-        HomePageClass homePageClass = new HomePageClass(getDriver());
+        HomePageClass homePageClass = new HomePageClass(driver);
         SoftAssert softAssert = new SoftAssert();
         homePageClass.clickToHighToLow();
         for (int i = 1; i < homePageClass.itemPricesSize(); i++) {
@@ -118,7 +120,7 @@ public class HomePage extends BaseTest {
 
     @Test
     public void addToCart() {
-        HomePageClass homePageClass = new HomePageClass(getDriver());
+        HomePageClass homePageClass = new HomePageClass(driver);
         homePageClass.clickToAddToCart();
         homePageClass.RemoveVisibilityOf();
         homePageClass.clickToRemove();
@@ -127,7 +129,7 @@ public class HomePage extends BaseTest {
 
     @Test
     public void footer() {
-        BasePage basePage = new BasePage(getDriver());
+        BasePage basePage = new BasePage();
         basePage.getFooter().FooterRobotvisibilitiOf();
         Assert.assertEquals(basePage.getFooter().footerTex(), FOOTER_TEXT.toString());
     }

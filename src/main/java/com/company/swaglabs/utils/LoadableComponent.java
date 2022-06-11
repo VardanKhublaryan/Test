@@ -5,6 +5,7 @@ public abstract class LoadableComponent<T extends LoadableComponent<T>> {
     public T get() {
         try {
             isLoaded();
+
             return (T) this;
         } catch (Error e) {
             load();

@@ -2,18 +2,18 @@ package com.company.swaglabs.pages;
 
 import com.company.swaglabs.components.Footer;
 import com.company.swaglabs.components.Header;
+import com.company.swaglabs.utils.CustomWebDriver;
 import com.company.swaglabs.utils.LoadableComponent;
 import com.company.swaglabs.utils.WaitHelper;
 import org.openqa.selenium.WebDriver;
 
 public class BasePage extends LoadableComponent<BasePage> {
-    private WebDriver driver;
+    WebDriver driver = CustomWebDriver.getDriver();
     private Header header;
     private Footer footer;
 
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
+    public BasePage() {
         header = new Header(this.driver);
         footer = new Footer(this.driver);
     }
@@ -32,9 +32,18 @@ public class BasePage extends LoadableComponent<BasePage> {
 
     @Override
     protected void isLoaded() throws Error {
-        if (WaitHelper.waitForJStoLoad(driver)) {
-            throw new Error("Page was not successfully loaded");
 
+    }
+
+    public void jsIsLoaded() throws Error {
+        if(!WaitHelper.waitForJStoLoad(driver)) {
+            throw new Error("Page was not successfully loaded");
+        }
+    }
+
+    public void jqeryIsLoaded() throws Error {
+        if(!WaitHelper.waitForJQueryToLoad(driver)) {
+            throw new Error("Page was not successfully loaded");
         }
     }
 }

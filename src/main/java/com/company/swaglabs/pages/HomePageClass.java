@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
+import static com.company.swaglabs.constants.Urls.HOMPAGE_URL;
 import static com.company.swaglabs.utils.CustomWebElement.click;
 import static com.company.swaglabs.utils.CustomWebElement.isDisplayed;
 
@@ -48,10 +49,9 @@ public class HomePageClass extends BasePage {
 
 
     public HomePageClass(WebDriver driver) {
-        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        basePage = new BasePage(this.driver);
+        basePage = new BasePage();
     }
 
     public void allItemsVisibilityOf() {
@@ -139,6 +139,7 @@ public class HomePageClass extends BasePage {
         BufferedImage randomImageItem1 = screenshot1.getImage();
         BufferedImage randomImageItem2 = screenshot2.getImage();
 
+
         ImageDiffer imgDiff = new ImageDiffer();
         isDisplayed(imageItems.get(randomIndex1));
         isDisplayed(imageItems.get(randomIndex2));
@@ -156,12 +157,21 @@ public class HomePageClass extends BasePage {
 
     @Override
     protected void load() {
-
+        driver.get(HOMPAGE_URL.toString());
     }
 
+
     @Override
-    protected void isLoaded() throws Error {
-        super.isLoaded();
+    public HomePageClass get() {
+        try {
+            super.jsIsLoaded();
+            return this;
+
+        } catch (Error e) {
+            this.load();
+        }
+        super.jsIsLoaded();
+        return this;
     }
 
 //    public static void main(String[] args) throws IOException {

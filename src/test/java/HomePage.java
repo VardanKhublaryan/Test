@@ -21,7 +21,7 @@ public class HomePage extends BaseTest {
 
     }
 
-    @Test(groups = "a")
+    @Test
     public void itemsImages() {
         SoftAssert softAssert = new SoftAssert();
         HomePageClass homePage = new HomePageClass(driver);
@@ -118,14 +118,24 @@ public class HomePage extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test
-    public void addToCart() {
-        HomePageClass homePageClass = new HomePageClass(driver);
-        homePageClass.clickToAddToCart();
-        homePageClass.RemoveVisibilityOf();
-        homePageClass.clickToRemove();
-        homePageClass.addToCardVisibility();
-    }
+//    @Test
+//    public void addToCart() {
+//        HomePageClass homePageClass = new HomePageClass(driver);
+//        int size = homePageClass.getAddToCardSize();
+//        for (int i = 0; i < size; i++) {
+//            homePageClass.addToCardVisibility();
+//            homePageClass.clickToAddToCart(i);
+//            size = homePageClass.getAddToCardSize() + 1;
+//            homePageClass.removeIsDisplayed();
+//        }
+//        int removeSize = homePageClass.getRemoveSize();
+//        for (int i = 0; i <= removeSize; i++) {
+//            homePageClass.addToCardVisibility();
+//            homePageClass.clickToRemove(i);
+//            removeSize = homePageClass.getRemoveSize() + 1;
+//            homePageClass.removeIsDisplayed();
+//        }
+//    }
 
     @Test
     public void footer() {

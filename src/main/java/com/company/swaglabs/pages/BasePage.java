@@ -36,13 +36,13 @@ public class BasePage extends LoadableComponent<BasePage> {
     }
 
     public void jsIsLoaded() throws Error {
-        if(!WaitHelper.waitForJStoLoad(driver)) {
+        if(!WaitHelper.waitForJStoLoad()) {
             throw new Error("Page was not successfully loaded");
         }
     }
 
     public void jqeryIsLoaded() throws Error {
-        if(!WaitHelper.waitForJQueryToLoad(driver)) {
+        if(!WaitHelper.waitForJQueryToLoad()) {
             throw new Error("Page was not successfully loaded");
         }
     }

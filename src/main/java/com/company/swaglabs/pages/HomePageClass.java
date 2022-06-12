@@ -20,6 +20,7 @@ import java.util.Random;
 import static com.company.swaglabs.constants.Urls.HOMPAGE_URL;
 import static com.company.swaglabs.utils.CustomWebElement.click;
 import static com.company.swaglabs.utils.CustomWebElement.isDisplayed;
+import static com.company.swaglabs.utils.WaitHelper.waitUntilElementClickable;
 
 public class HomePageClass extends BasePage {
     private WebDriver driver;
@@ -39,12 +40,12 @@ public class HomePageClass extends BasePage {
     private WebElement lowToHigh;
     @FindBy(css = "[value='hilo']")
     private WebElement highToLow;
-    @FindBy(id = "add-to-cart-sauce-labs-backpack")
-    private WebElement addToCart;
+    @FindBy(css = "[class='btn btn_primary btn_small btn_inventory']")
+    private List<WebElement> addToCart;
     @FindBy(className = "inventory_item_desc")
     private List<WebElement> itemsDescriptions;
-    @FindBy(id = ("remove-sauce-labs-backpack"))
-    private WebElement remove;
+    @FindBy(css = "[class='btn btn_secondary btn_small btn_inventory']")
+    private List<WebElement> remove;
     private BasePage basePage;
 
 
@@ -107,8 +108,12 @@ public class HomePageClass extends BasePage {
         click(highToLow);
     }
 
-    public void clickToAddToCart() {
-        click(addToCart);
+    public void clickToAddToCart(int index) {
+        click(addToCart.get(index));
+    }
+
+    public int getAddToCardSize() {
+        return addToCart.size();
     }
 
     public String itemsDescriptionsText(int index) {
@@ -116,15 +121,30 @@ public class HomePageClass extends BasePage {
     }
 
     public void addToCardVisibility() {
-        isDisplayed(addToCart);
+        for (int i = 0; i < getAddToCardSize(); i++) {
+            waitUntilElementClickable(addToCart.get(i));
+        }
+
     }
 
-    public void RemoveVisibilityOf() {
-        isDisplayed(remove);
+    public void removeVisibilityOf() {
+        for (int i = 0; i < remove.size(); i++) {
+            waitUntilElementClickable(remove.get(i));
+        }
     }
 
-    public void clickToRemove() {
-        click(remove);
+    public void clickToRemove(int index) {
+        click(remove.get(index));
+    }
+
+    public int getRemoveSize() {
+        return remove.size();
+    }
+
+    public void removeIsDisplayed() {
+        for (int i = 0; i < remove.size(); i++) {
+            waitUntilElementClickable(remove.get(i));
+        }
     }
 
     public boolean compareImageItems() {

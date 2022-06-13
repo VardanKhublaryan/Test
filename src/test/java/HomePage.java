@@ -15,7 +15,7 @@ public class HomePage extends BaseTest {
     @BeforeMethod
     public void login() {
         LoginPageClass loginPageClass = new LoginPageClass(driver);
-        loginPageClass.login(STANDARD_USER, PASSWORD);
+        loginPageClass.login(PROBLEM_USER, PASSWORD);
         HomePageClass homePageClass = new HomePageClass(driver);
         homePageClass.get();
 
@@ -118,24 +118,26 @@ public class HomePage extends BaseTest {
         softAssert.assertAll();
     }
 
-//    @Test
-//    public void addToCart() {
-//        HomePageClass homePageClass = new HomePageClass(driver);
-//        int size = homePageClass.getAddToCardSize();
-//        for (int i = 0; i < size; i++) {
-//            homePageClass.addToCardVisibility();
-//            homePageClass.clickToAddToCart(i);
-//            size = homePageClass.getAddToCardSize() + 1;
-//            homePageClass.removeIsDisplayed();
-//        }
-//        int removeSize = homePageClass.getRemoveSize();
-//        for (int i = 0; i <= removeSize; i++) {
-//            homePageClass.addToCardVisibility();
-//            homePageClass.clickToRemove(i);
-//            removeSize = homePageClass.getRemoveSize() + 1;
-//            homePageClass.removeIsDisplayed();
-//        }
-//    }
+    @Test
+    public void addToCart() {
+        HomePageClass homePageClass = new HomePageClass(driver);
+        int size = homePageClass.getAddToCardSize();
+        for (int i = 0; i <= size * 2; i++) {
+            homePageClass.addToCardClickable(0);
+            homePageClass.clickToAddToCart(0);
+            homePageClass.removeIsClickable(0);
+            if (homePageClass.getAddToCardSize() == 0) {
+                for (int j = 0; j <= size; j++) {
+                    homePageClass.removeIsClickable(0);
+                    homePageClass.clickToRemove(0);
+                    homePageClass.addToCardClickable(0);
+                    if (homePageClass.getRemoveSize() == 0) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
     @Test
     public void footer() {

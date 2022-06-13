@@ -1,6 +1,7 @@
 import com.company.swaglabs.utils.CustomWebDriver;
 import com.company.swaglabs.utils.WaitHelper;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;

@@ -120,17 +120,8 @@ public class HomePageClass extends BasePage {
         return itemsDescriptions.get(index).getText();
     }
 
-    public void addToCardVisibility() {
-        for (int i = 0; i < getAddToCardSize(); i++) {
-            waitUntilElementClickable(addToCart.get(i));
-        }
-
-    }
-
-    public void removeVisibilityOf() {
-        for (int i = 0; i < remove.size(); i++) {
-            waitUntilElementClickable(remove.get(i));
-        }
+    public void addToCardClickable(int index) {
+            waitUntilElementClickable(addToCart.get(index));
     }
 
     public void clickToRemove(int index) {
@@ -141,10 +132,8 @@ public class HomePageClass extends BasePage {
         return remove.size();
     }
 
-    public void removeIsDisplayed() {
-        for (int i = 0; i < remove.size(); i++) {
-            waitUntilElementClickable(remove.get(i));
-        }
+    public void removeIsClickable(int index) {
+        waitUntilElementClickable(remove.get(index));
     }
 
     public boolean compareImageItems() {

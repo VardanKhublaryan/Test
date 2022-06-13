@@ -1,4 +1,4 @@
-package com.company.swaglabs.action;
+package com.company.swaglabs.utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,17 +7,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class WrapActions {
+public class CustomWebElement {
     private WebDriver driver;
     private static WebDriverWait wait;
 
-    public WrapActions(WebDriver driver) {
+    public CustomWebElement(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
     }
 
 
-    public static boolean visibilityOf(WebElement webElement) {
+    public static boolean isDisplayed(WebElement webElement) {
         try {
             wait.until(ExpectedConditions.visibilityOf(webElement));
             return webElement.isDisplayed();
@@ -28,7 +28,7 @@ public class WrapActions {
     }
 
     public static void click(WebElement webElement) {
-        visibilityOf(webElement);
+        isDisplayed(webElement);
         try {
             wait.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
@@ -38,7 +38,7 @@ public class WrapActions {
     }
 
     public static void fill(WebElement webElement, String field) {
-        visibilityOf(webElement);
+        isDisplayed(webElement);
         try {
             webElement.clear();
             webElement.sendKeys(field);

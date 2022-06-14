@@ -119,24 +119,20 @@ public class HomePage extends BaseTest {
     }
 
     @Test
-    public void addToCart() {
+    public void addToCartAndRemove() {
         HomePageClass homePageClass = new HomePageClass(driver);
-        int size = homePageClass.getAddToCardSize();
-        for (int i = 0; i <= size * 2; i++) {
-            homePageClass.addToCardClickable(0);
-            homePageClass.clickToAddToCart(0);
-            homePageClass.removeIsClickable(0);
-            if (homePageClass.getAddToCardSize() == 0) {
-                for (int j = 0; j <= size; j++) {
-                    homePageClass.removeIsClickable(0);
-                    homePageClass.clickToRemove(0);
-                    homePageClass.addToCardClickable(0);
-                    if (homePageClass.getRemoveSize() == 0) {
-                        break;
-                    }
-                }
-            }
+        SoftAssert softAssert = new SoftAssert();
+        int size = homePageClass.getAddToCardAndRemoveSize();
+        for (int i = 0; i < size; i++) {
+            homePageClass.addToCardAndRemoveClickable();
+            homePageClass.clickToAddToCartAndRemove(i);
+            softAssert.assertEquals(homePageClass.removeText(), "REMOVE");
+
+            homePageClass.addToCardAndRemoveClickable();
+            homePageClass.clickToAddToCartAndRemove(i);
+            softAssert.assertEquals(homePageClass.addToCartText(), "ADD TO CART");
         }
+        softAssert.assertAll();
     }
 
     @Test

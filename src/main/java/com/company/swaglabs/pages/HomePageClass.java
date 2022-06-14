@@ -40,25 +40,28 @@ public class HomePageClass extends BasePage {
     private WebElement lowToHigh;
     @FindBy(css = "[value='hilo']")
     private WebElement highToLow;
-    @FindBy(css = "[class='btn btn_primary btn_small btn_inventory']")
-    private List<WebElement> addToCart;
+    @FindBy(className = "btn")
+    private List<WebElement> addToCartsAndRemove;
+    @FindBy(className = "btn")
+    private WebElement addToCartAndRemove;
     @FindBy(className = "inventory_item_desc")
     private List<WebElement> itemsDescriptions;
     @FindBy(css = "[class='btn btn_secondary btn_small btn_inventory']")
-    private List<WebElement> remove;
-    private BasePage basePage;
+    private WebElement remove;
+    @FindBy(css = "[class='btn btn_primary btn_small btn_inventory']")
+    private WebElement addToCart;
+
 
 
     public HomePageClass(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        basePage = new BasePage();
+
     }
 
     public void allItemsVisibilityOf() {
-        isDisplayed(basePage.getHeader().getAllItems());
+        isDisplayed(super.getHeader().getAllItems());
     }
-
 
     public boolean isImageItemDisplayed(int index) {
         return isDisplayed(imageItems.get(index));
@@ -108,33 +111,30 @@ public class HomePageClass extends BasePage {
         click(highToLow);
     }
 
-    public void clickToAddToCart(int index) {
-        click(addToCart.get(index));
+    public void clickToAddToCartAndRemove(int index) {
+        click(addToCartsAndRemove.get(index));
     }
 
-    public int getAddToCardSize() {
-        return addToCart.size();
+    public int getAddToCardAndRemoveSize() {
+        return addToCartsAndRemove.size();
+    }
+
+    public String addToCartText() {
+        return addToCart.getText();
     }
 
     public String itemsDescriptionsText(int index) {
         return itemsDescriptions.get(index).getText();
     }
 
-    public void addToCardClickable(int index) {
-            waitUntilElementClickable(addToCart.get(index));
+    public void addToCardAndRemoveClickable() {
+        waitUntilElementClickable(addToCartAndRemove);
     }
 
-    public void clickToRemove(int index) {
-        click(remove.get(index));
+    public String removeText() {
+        return remove.getText();
     }
 
-    public int getRemoveSize() {
-        return remove.size();
-    }
-
-    public void removeIsClickable(int index) {
-        waitUntilElementClickable(remove.get(index));
-    }
 
     public boolean compareImageItems() {
         Random random = new Random();

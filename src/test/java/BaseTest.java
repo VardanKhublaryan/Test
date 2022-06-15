@@ -23,8 +23,8 @@ public class BaseTest {
         return driver;
     }
 
-//    @AfterSuite
-//    public void treeUp() {
-//        driver.quit();
-//    }
+    @AfterSuite
+    public void treeUp() {
+        driver.quit();
+    }
 }

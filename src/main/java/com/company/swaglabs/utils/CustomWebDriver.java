@@ -8,6 +8,7 @@ public class CustomWebDriver {
 
 
     private CustomWebDriver() {
+
     }
 
     public static WebDriver getDriver() {

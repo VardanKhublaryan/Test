@@ -119,8 +119,8 @@ public class HomePageClass extends BasePage {
         return addToCartsAndRemove.size();
     }
 
-    public String addToCartText() {
-        return addToCart.getText();
+    public String addToCartAndRemoveText(int index) {
+        return addToCartsAndRemove.get(index).getText();
     }
 
     public String itemsDescriptionsText(int index) {
@@ -130,11 +130,6 @@ public class HomePageClass extends BasePage {
     public void addToCardAndRemoveClickable() {
         waitUntilElementClickable(addToCartAndRemove);
     }
-
-    public String removeText() {
-        return remove.getText();
-    }
-
 
     public boolean compareImageItems() {
         Random random = new Random();

@@ -15,7 +15,7 @@ public class HomePage extends BaseTest {
     @BeforeMethod
     public void login() {
         LoginPageClass loginPageClass = new LoginPageClass(driver);
-        loginPageClass.login(PROBLEM_USER, PASSWORD);
+        loginPageClass.login(STANDARD_USER, PASSWORD);
         HomePageClass homePageClass = new HomePageClass(driver);
         homePageClass.get();
 
@@ -126,13 +126,18 @@ public class HomePage extends BaseTest {
         for (int i = 0; i < size; i++) {
             homePageClass.addToCardAndRemoveClickable();
             homePageClass.clickToAddToCartAndRemove(i);
-            softAssert.assertEquals(homePageClass.removeText(), "REMOVE");
+            softAssert.assertEquals(homePageClass.addToCartAndRemoveText(i), "REMOVE");
+            System.out.println(homePageClass.addToCartAndRemoveText(i));
 
             homePageClass.addToCardAndRemoveClickable();
             homePageClass.clickToAddToCartAndRemove(i);
-            softAssert.assertEquals(homePageClass.addToCartText(), "ADD TO CART");
+            softAssert.assertEquals(homePageClass.addToCartAndRemoveText(i), "ADD TO CART");
+            System.out.println(homePageClass.addToCartAndRemoveText(i));
         }
         softAssert.assertAll();
+//        Assert.assertEquals(homePageClass.addToCartText(),"ADD TO CART");
+//        homePageClass.clickToAddToCartAndRemove(2);
+//        Assert.assertEquals(homePageClass.removeText(),"REMOVE");
     }
 
     @Test

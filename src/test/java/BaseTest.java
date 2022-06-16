@@ -7,12 +7,11 @@ import org.testng.annotations.BeforeMethod;
 import java.time.Duration;
 
 public class BaseTest {
-    WebDriver driver;
+    WebDriver driver = CustomWebDriver.getDriver();
 
 
     @BeforeMethod
     public void setUp() {
-        driver = CustomWebDriver.getDriver();
         WaitHelper.waitForJStoLoad();
         driver.manage().window().maximize();
         driver.get("https://www.saucedemo.com/");

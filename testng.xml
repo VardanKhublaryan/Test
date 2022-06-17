@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Component Tests" verbose="2" annotations="JDK">
+    <test name="Test" preserve-order="true" >
+        <classes>
+            <class name="BaseTest" />
+            <class name="LoginPage" />
+            <class name="HomePage" />
+        </classes>
+    </test>
+</suite>

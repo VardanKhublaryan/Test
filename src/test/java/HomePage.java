@@ -127,17 +127,12 @@ public class HomePage extends BaseTest {
             homePageClass.addToCardAndRemoveClickable();
             homePageClass.clickToAddToCartAndRemove(i);
             softAssert.assertEquals(homePageClass.addToCartAndRemoveText(i), "REMOVE");
-            System.out.println(homePageClass.addToCartAndRemoveText(i));
 
             homePageClass.addToCardAndRemoveClickable();
             homePageClass.clickToAddToCartAndRemove(i);
             softAssert.assertEquals(homePageClass.addToCartAndRemoveText(i), "ADD TO CART");
-            System.out.println(homePageClass.addToCartAndRemoveText(i));
         }
         softAssert.assertAll();
-//        Assert.assertEquals(homePageClass.addToCartText(),"ADD TO CART");
-//        homePageClass.clickToAddToCartAndRemove(2);
-//        Assert.assertEquals(homePageClass.removeText(),"REMOVE");
     }
 
     @Test

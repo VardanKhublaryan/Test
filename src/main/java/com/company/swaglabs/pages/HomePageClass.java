@@ -23,34 +23,36 @@ import static com.company.swaglabs.utils.CustomWebElement.isDisplayed;
 import static com.company.swaglabs.utils.WaitHelper.waitUntilElementClickable;
 
 public class HomePageClass extends BasePage {
-    private WebDriver driver;
+
+    private static WebDriver driver;
     @FindBy(css = "img[class='inventory_item_img']")
-    private List<WebElement> imageItems;
+    private static List<WebElement> imageItems;
     @FindBy(className = "inventory_item_name")
-    private List<WebElement> itemsNames;
+    private static List<WebElement> itemsNames;
     @FindBy(className = "product_sort_container")
     private WebElement filtrButton;
     @FindBy(css = "[value='za']")
-    private WebElement zToa;
+    private static WebElement zToa;
     @FindBy(css = "[value='az']")
-    private WebElement aToz;
+    private static WebElement aToz;
     @FindBy(className = "inventory_item_price")
-    private List<WebElement> itemsPrices;
+    private static List<WebElement> itemsPrices;
     @FindBy(css = "[value='lohi']")
-    private WebElement lowToHigh;
+    private static WebElement lowToHigh;
     @FindBy(css = "[value='hilo']")
-    private WebElement highToLow;
+    private static WebElement highToLow;
     @FindBy(className = "btn")
-    private List<WebElement> addToCartsAndRemove;
+    private static List<WebElement> addToCartsAndRemove;
     @FindBy(className = "btn")
-    private WebElement addToCartAndRemove;
+    private static WebElement addToCartAndRemove;
     @FindBy(className = "inventory_item_desc")
-    private List<WebElement> itemsDescriptions;
+    private static List<WebElement> itemsDescriptions;
     @FindBy(css = "[class='btn btn_secondary btn_small btn_inventory']")
     private WebElement remove;
     @FindBy(css = "[class='btn btn_primary btn_small btn_inventory']")
     private WebElement addToCart;
-
+    @FindBy(id = "continue-shopping")
+    private static WebElement continueShopping;
 
 
     public HomePageClass(WebDriver driver) {
@@ -59,27 +61,27 @@ public class HomePageClass extends BasePage {
 
     }
 
-    public void allItemsVisibilityOf() {
-        isDisplayed(super.getHeader().getAllItems());
+    public static void allItemsVisibilityOf() {
+        isDisplayed(getHeader().getAllItems());
     }
 
-    public boolean isImageItemDisplayed(int index) {
+    public static boolean isImageItemDisplayed(int index) {
         return isDisplayed(imageItems.get(index));
     }
 
-    public int imageItemsCount() {
+    public static int imageItemsCount() {
         return imageItems.size();
     }
 
-    public int itemNamesSize() {
+    public static int itemNamesSize() {
         return itemsNames.size();
     }
 
-    public boolean itemNamesIsDisplayed(int index) {
+    public static boolean itemNamesIsDisplayed(int index) {
         return isDisplayed(itemsNames.get(index));
     }
 
-    public String itemNamesText(int index) {
+    public static String itemNamesText(int index) {
         return itemsNames.get(index).getText();
     }
 
@@ -87,51 +89,51 @@ public class HomePageClass extends BasePage {
         return filtrButton;
     }
 
-    public void clickToZtoA() {
+    public static void clickToZtoA() {
         click(zToa);
     }
 
-    public void clickToAtoZ() {
+    public static void clickToAtoZ() {
         click(aToz);
     }
 
-    public int itemPricesSize() {
+    public static int itemPricesSize() {
         return itemsPrices.size();
     }
 
-    public String itemsPricesText(int index) {
+    public static String itemsPricesText(int index) {
         return itemsPrices.get(index).getText();
     }
 
-    public void clickToLowToHigh() {
+    public static void clickToLowToHigh() {
         click(lowToHigh);
     }
 
-    public void clickToHighToLow() {
+    public static void clickToHighToLow() {
         click(highToLow);
     }
 
-    public void clickToAddToCartAndRemove(int index) {
+    public static void clickToAddToCartAndRemove(int index) {
         click(addToCartsAndRemove.get(index));
     }
 
-    public int getAddToCardAndRemoveSize() {
+    public static int getAddToCardAndRemoveSize() {
         return addToCartsAndRemove.size();
     }
 
-    public String addToCartAndRemoveText(int index) {
+    public static String addToCartAndRemoveText(int index) {
         return addToCartsAndRemove.get(index).getText();
     }
 
-    public String itemsDescriptionsText(int index) {
+    public static String itemsDescriptionsText(int index) {
         return itemsDescriptions.get(index).getText();
     }
 
-    public void addToCardAndRemoveClickable() {
+    public static void addToCardAndRemoveClickable() {
         waitUntilElementClickable(addToCartAndRemove);
     }
 
-    public boolean compareImageItems() {
+    public static boolean compareImageItems() {
         Random random = new Random();
         int size = imageItems.size();
         int randomIndex1 = random.nextInt(size);
@@ -154,16 +156,17 @@ public class HomePageClass extends BasePage {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return diff.hasDiff();
+    }
 
+    public static void clickToContinueShopping() {
+        click(continueShopping);
     }
 
     @Override
     protected void load() {
         driver.get(HOMPAGE_URL.toString());
     }
-
 
     @Override
     public HomePageClass get() {
@@ -177,37 +180,5 @@ public class HomePageClass extends BasePage {
         super.jsIsLoaded();
         return this;
     }
-
-//    public static void main(String[] args) throws IOException {
-//
-//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-//        WebDriver driver = new ChromeDriver();
-//        driver.manage().window().maximize();
-//        driver.get("http://demo.guru99.com/test/guru99home/");
-//
-//        // Find the element and take a screenshot
-//
-//        WebElement logoElement = driver.findElement(By.xpath("//*[@id=\"site-name\"]/a[1]/img"));
-//        Screenshot logoElementScreenshot = new AShot().takeScreenshot(driver, logoElement);
-//
-//        // read the image to compare
-//
-//        BufferedImage expectedImage = ImageIO.read(new File("C:\\Users\\user\\Pictures\\Guru99logo.png"));
-//
-//        BufferedImage actualImage = logoElementScreenshot.getImage();
-//        ImageIO.write(actualImage, "png", new File("C:\\Users\\user\\Pictures\\Guru99logo_actual.png"));
-//
-//        // Create ImageDiffer object and call method makeDiff()
-//
-//        ImageDiffer imgDiff = new ImageDiffer();
-//        ImageDiff diff = imgDiff.makeDiff(actualImage, expectedImage);
-//
-//        if (diff.hasDiff()) {
-//            System.out.println("Images are different");
-//        } else {
-//            System.out.println("Images are same");
-//        }
-//        driver.quit();
-//    }
 }
 

@@ -7,10 +7,11 @@ import com.company.swaglabs.utils.LoadableComponent;
 import com.company.swaglabs.utils.WaitHelper;
 import org.openqa.selenium.WebDriver;
 
+
 public class BasePage extends LoadableComponent<BasePage> {
     WebDriver driver = CustomWebDriver.getDriver();
-    private Header header;
-    private Footer footer;
+    private static Header header;
+    private static Footer footer;
 
 
     public BasePage() {
@@ -18,11 +19,11 @@ public class BasePage extends LoadableComponent<BasePage> {
         footer = new Footer(this.driver);
     }
 
-    public Header getHeader() {
+    public static Header getHeader() {
         return header;
     }
 
-    public Footer getFooter() {
+    public static Footer getFooter() {
         return footer;
     }
 
@@ -32,7 +33,6 @@ public class BasePage extends LoadableComponent<BasePage> {
 
     @Override
     protected void isLoaded() throws Error {
-
     }
 
     public void jsIsLoaded() throws Error {

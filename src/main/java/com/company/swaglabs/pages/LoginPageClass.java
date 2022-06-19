@@ -1,33 +1,33 @@
 package com.company.swaglabs.pages;
 
-import com.company.swaglabs.utils.CustomWebElement;
 import com.company.swaglabs.constants.LogInData;
-import com.company.swaglabs.utils.LoadableComponent;
+import com.company.swaglabs.utils.CustomWebElement;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static com.company.swaglabs.constants.Urls.*;
 import static com.company.swaglabs.utils.CustomWebElement.*;
 
 
-public class LoginPageClass extends LoadableComponent<LoginPageClass> {
-    WebDriver driver;
+public class LoginPageClass extends BasePage {
+    static WebDriver driver;
     @FindBy(tagName = "html")
-    private WebElement html;
+    private static WebElement html;
     @FindBy(id = "user-name")
-    private WebElement loginField;
+    private static WebElement loginField;
     @FindBy(id = "password")
-    private WebElement passwordField;
+    private static WebElement passwordField;
     @FindBy(id = "login-button")
-    private WebElement loginButton;
+    private static WebElement loginButton;
     @FindBy(className = "bot_column")
-    private WebElement icon;
+    private static WebElement icon;
     @FindBy(className = "login_logo")
-    private WebElement logo;
+    private static WebElement logo;
     @FindBy(className = "error-message-container")
-    private WebElement loginError;
+    private static WebElement loginError;
 
     private CustomWebElement customWebElement;
 
@@ -38,42 +38,45 @@ public class LoginPageClass extends LoadableComponent<LoginPageClass> {
         customWebElement = new CustomWebElement(driver);
     }
 
-    public void login(LogInData userName, LogInData password) {
+    public static void loginn(LogInData userName, LogInData password) {
         fill(loginField, userName.toString());
         fill(passwordField, password.toString());
         click(loginButton);
     }
 
-    public boolean loginPageIconVisibilityOf() {
-        if (isDisplayed(icon)) {
-            return true;
-        }
-        return false;
+    public static boolean loginPageIconVisibilityOf() {
+        return isDisplayed(icon);
     }
 
-    public boolean logoVisibilityOf() {
-        if (isDisplayed(logo)) {
-            return true;
-        }
-        return false;
+    public static boolean logoVisibilityOf() {
+        return isDisplayed(logo);
     }
 
-    public String getErrorMsg() {
+    public static String getErrorMsg() {
         isDisplayed(loginError);
         return loginError.getText();
     }
 
-    public void zoomOut() {
+    public static void zoomOut() {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("document.body.style.zoom = '1.5'");
     }
 
     @Override
     protected void load() {
+        driver.get(LOGINPAGE_URL.toString());
     }
 
-    @Override
-    protected void isLoaded() throws Error {
+    public LoginPageClass get() {
+        try {
+            super.jsIsLoaded();
+            return this;
+
+        } catch (Error e) {
+            this.load();
+        }
+        super.jsIsLoaded();
+        return this;
     }
 
 }

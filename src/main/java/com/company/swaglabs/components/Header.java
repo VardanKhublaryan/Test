@@ -5,20 +5,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.company.swaglabs.utils.CustomWebElement.*;
+import static com.company.swaglabs.utils.CustomWebElement.click;
+import static com.company.swaglabs.utils.CustomWebElement.isDisplayed;
 
 
 public class Header {
     private WebDriver driver;
 
     @FindBy(className = "app_logo")
-    private WebElement logo;
+    private static WebElement logo;
     @FindBy(id = ("react-burger-menu-btn"))
-    private WebElement menuBar;
+    private static WebElement menuBar;
     @FindBy(className = "shopping_cart_link")
-    private WebElement shopContainer;
+    private static WebElement shopContainer;
     @FindBy(id = "inventory_sidebar_link")
-    private WebElement allItems;
+    private static WebElement allItems;
 
     public Header(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -26,11 +27,11 @@ public class Header {
 
     }
 
-    public void clickOnMenuBar() {
-        this.menuBar.click();
+    public static void clickOnMenuBar() {
+        menuBar.click();
     }
 
-    public boolean menuBarIsVisibility() {
+    public static boolean menuBarIsVisibility() {
         if (isDisplayed(menuBar)) {
             return true;
         }
@@ -38,7 +39,7 @@ public class Header {
     }
 
     public void clickOnShopContainer() {
-        this.shopContainer.click();
+        click(shopContainer);
     }
 
     public WebElement getLogo() {

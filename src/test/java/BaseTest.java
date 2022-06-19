@@ -3,9 +3,11 @@ import com.company.swaglabs.utils.WaitHelper;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
 
+@Test
 public class BaseTest {
     WebDriver driver = CustomWebDriver.getDriver();
 

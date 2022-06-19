@@ -9,14 +9,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static com.company.swaglabs.constants.LogInData.TIME_OUT;
+
 public class WaitHelper {
     private static WebDriver driver = CustomWebDriver.getDriver();
-    private static final int TIME_OUT = 5;
 
     public static void waitUntilElementClickable(WebElement webElement) {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT)).until(ExpectedConditions.visibilityOf(webElement));
-            new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT)).until(ExpectedConditions.elementToBeClickable(webElement));
+            new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger())).until(ExpectedConditions.visibilityOf(webElement));
+            new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger())).until(ExpectedConditions.elementToBeClickable(webElement));
         } catch (Exception e) {
             System.out.println(e + webElement.getText() + "is not displayed");
 
@@ -25,7 +26,7 @@ public class WaitHelper {
 
     public static boolean waitForJQueryToLoad() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger()));
         ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver driver) {
@@ -41,7 +42,7 @@ public class WaitHelper {
     }
 
     public static boolean waitForJStoLoad() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger()));
         ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver driver) {

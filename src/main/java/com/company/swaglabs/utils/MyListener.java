@@ -36,7 +36,9 @@ public class MyListener implements ITestListener {
     }
 
     @Override
-    public void onFinish(ITestContext context) {
+    public void onFinish(ITestContext iTestContext) {
+
     }
+
 }
 

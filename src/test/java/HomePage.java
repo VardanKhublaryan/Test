@@ -2,8 +2,8 @@ import com.company.swaglabs.constants.ItemsTexts;
 import com.company.swaglabs.pages.HomePageClass;
 import com.company.swaglabs.pages.LoginPageClass;
 import org.testng.Assert;
-import org.testng.annotations.*;
-
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import static com.company.swaglabs.components.Header.clickOnMenuBar;
@@ -13,8 +13,7 @@ import static com.company.swaglabs.pages.HomePageClass.*;
 import static com.company.swaglabs.pages.LoginPageClass.loginn;
 
 @Test
-public class HomePage extends BaseTest{
-
+public class HomePage extends BaseTest {
 
     @BeforeMethod
     public void login() {

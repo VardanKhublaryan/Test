@@ -3,16 +3,15 @@ import com.company.swaglabs.pages.LoginPageClass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.company.swaglabs.components.Header.*;
+import static com.company.swaglabs.components.Header.menuBarIsVisibility;
 import static com.company.swaglabs.constants.LogInData.*;
 import static com.company.swaglabs.pages.LoginPageClass.*;
 
-@Test
-public class LoginPage extends BaseTest {
 
+public class LoginPage extends BaseTest {
     @Test
     public void login() {
-        new LoginPageClass(driver).get();
+        new LoginPageClass(driver);
         loginn(STANDARD_USER, PASSWORD);
         Header.clickOnMenuBar();
         Assert.assertTrue(menuBarIsVisibility(), "going to home page failed");

@@ -33,6 +33,7 @@ public class BasePage extends LoadableComponent<BasePage> {
 
     @Override
     protected void isLoaded() throws Error {
+        jsIsLoaded();
     }
 
     public void jsIsLoaded() throws Error {

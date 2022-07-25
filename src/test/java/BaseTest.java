@@ -1,14 +1,13 @@
 import com.company.swaglabs.utils.CustomWebDriver;
 import com.company.swaglabs.utils.WaitHelper;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
 
 import java.time.Duration;
 
 @Test
-public class BaseTest {
+public class BaseTest  {
     WebDriver driver = CustomWebDriver.getDriver();
 
 

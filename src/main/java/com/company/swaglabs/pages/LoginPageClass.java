@@ -13,7 +13,7 @@ import static com.company.swaglabs.utils.CustomWebElement.*;
 
 
 public class LoginPageClass extends BasePage {
-    static WebDriver driver;
+    static WebDriver getDrive;
     @FindBy(tagName = "html")
     private static WebElement html;
     @FindBy(id = "user-name")
@@ -33,7 +33,7 @@ public class LoginPageClass extends BasePage {
 
 
     public LoginPageClass(WebDriver driver) {
-        this.driver = driver;
+        this.getDrive = driver;
         PageFactory.initElements(driver, this);
         customWebElement = new CustomWebElement(driver);
     }
@@ -58,13 +58,13 @@ public class LoginPageClass extends BasePage {
     }
 
     public static void zoomOut() {
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        JavascriptExecutor executor = (JavascriptExecutor) getDrive;
         executor.executeScript("document.body.style.zoom = '1.5'");
     }
 
     @Override
     protected void load() {
-        driver.get(LOGINPAGE_URL.toString());
+        getDrive.get(LOGINPAGE_URL.toString());
     }
 
     public LoginPageClass get() {

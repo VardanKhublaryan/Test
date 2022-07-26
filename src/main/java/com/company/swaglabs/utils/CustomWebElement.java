@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+import static com.company.swaglabs.utils.WaitHelper.*;
+
 public class CustomWebElement {
     private WebDriver driver;
     private static WebDriverWait wait;
@@ -30,7 +32,7 @@ public class CustomWebElement {
     public static void click(WebElement webElement) {
         isDisplayed(webElement);
         try {
-            wait.until(ExpectedConditions.elementToBeClickable(webElement));
+            waitUntilElementClickable(webElement);
             webElement.click();
         } catch (Exception e) {
             System.out.println(e);

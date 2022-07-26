@@ -129,7 +129,7 @@ public class HomePage extends BaseTest {
 
     @Test
     public void footer() {
-        getFooter().FooterRobotvisibilitiOf();
+        getFooter().FooterRobotVisibilityOf();
         Assert.assertEquals(getFooter().footerTex(), FOOTER_TEXT.toString());
     }
 

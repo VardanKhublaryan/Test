@@ -45,7 +45,7 @@ public class Footer {
     public WebElement getTwitterPage() {
         return twitterPage;
     }
-    public void FooterRobotvisibilitiOf(){
+    public void FooterRobotVisibilityOf(){
         isDisplayed(footerRobot);
     }
 }

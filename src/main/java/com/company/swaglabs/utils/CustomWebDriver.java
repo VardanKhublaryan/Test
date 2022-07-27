@@ -6,9 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class CustomWebDriver {
     private static WebDriver driver;
 
-
     private CustomWebDriver() {
-
     }
 
     public static WebDriver getDriver() {

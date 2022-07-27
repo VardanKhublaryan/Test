@@ -1,4 +1,5 @@
 import com.company.swaglabs.constants.ItemsTexts;
+import com.company.swaglabs.pages.BasePage;
 import com.company.swaglabs.pages.HomePageClass;
 import com.company.swaglabs.pages.LoginPageClass;
 import org.testng.Assert;
@@ -14,11 +15,14 @@ import static com.company.swaglabs.pages.LoginPageClass.loginn;
 
 @Test
 public class HomePage extends BaseTest {
+    BasePage basePage = new BasePage();
+    HomePageClass homePageClass = new HomePageClass(driver);
+
 
     @BeforeMethod
     public void login() {
         new LoginPageClass(driver);
-        loginn(PROBLEM_USER, PASSWORD);
+        loginn(STANDARD_USER, PASSWORD);
         HomePageClass homePageClass = new HomePageClass(getDriver());
         homePageClass.get();
     }
@@ -41,14 +45,15 @@ public class HomePage extends BaseTest {
     public void menuBar() {
         menuBarIsVisibility();
         clickOnMenuBar();
-        allItemsVisibilityOf();
+        homePageClass.allItemsVisibilityOf();
     }
 
     @Test
     public void itemsDescriptions() {
         SoftAssert softAssert = new SoftAssert();
         for (int i = 0; i < ItemsTexts.getItemsTexts().length; i++) {
-            softAssert.assertEquals(itemsDescriptionsText(i), ItemsTexts.getItemsTexts()[i].getText(), "item " + i + " text is wrong");
+            softAssert.assertEquals(itemsDescriptionsText(i),
+                    ItemsTexts.getItemsTexts()[i].getText(), "item " + i + " text is wrong");
         }
         softAssert.assertAll();
     }
@@ -57,7 +62,8 @@ public class HomePage extends BaseTest {
     public void itemPrices() {
         SoftAssert softAssert = new SoftAssert();
         for (int i = 0; i < itemPricesSize(); i++) {
-            softAssert.assertEquals(itemsPricesText(i), ItemsTexts.getItemsPrices()[i].getText(), "item " + i + " price is wrong");
+            softAssert.assertEquals(itemsPricesText(i),
+                    ItemsTexts.getItemsPrices()[i].getText(), "item " + i + " price is wrong");
         }
         softAssert.assertAll();
     }
@@ -88,7 +94,6 @@ public class HomePage extends BaseTest {
 
     @Test
     public void filterLowToHigh() {
-
         SoftAssert softAssert = new SoftAssert();
         clickToLowToHigh();
         for (int i = 1; i < itemPricesSize(); i++) {
@@ -129,13 +134,13 @@ public class HomePage extends BaseTest {
 
     @Test
     public void footer() {
-        getFooter().FooterRobotVisibilityOf();
-        Assert.assertEquals(getFooter().footerTex(), FOOTER_TEXT.toString());
+        basePage.getFooter().FooterRobotVisibilityOf();
+        Assert.assertEquals(basePage.getFooter().footerTex(), FOOTER_TEXT.toString());
     }
 
     @Test
     public void shopContainer() {
-        getHeader().clickOnShopContainer();
+        basePage.getHeader().clickOnShopContainer();
         clickToContinueShopping();
     }
 }

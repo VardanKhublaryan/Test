@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static com.company.swaglabs.utils.CustomWebDriver.*;
+import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
 
 
 public class MyListener implements ITestListener {
@@ -35,7 +35,7 @@ public class MyListener implements ITestListener {
                 takeScreenshot(getDriver());
 
         BufferedImage randomImageItem1 = screenshot1.getImage();
-        File file = new File("C:\\Users\\NR-Gaming-Front\\Pictures\\Screenshots\\" + "bug" + fileNum + ".png");
+        File file = new File("C:\\Users\\user\\bugsScreenshot\\" + "bug" + fileNum + ".png");
         try {
             ImageIO.write(randomImageItem1, "png", file);
             if (file.exists()) {
@@ -62,8 +62,6 @@ public class MyListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-
     }
-
 }
 

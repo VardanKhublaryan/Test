@@ -5,26 +5,21 @@ import com.company.swaglabs.components.Header;
 import com.company.swaglabs.utils.CustomWebDriver;
 import com.company.swaglabs.utils.LoadableComponent;
 import com.company.swaglabs.utils.WaitHelper;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.openqa.selenium.WebDriver;
 
-
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class BasePage extends LoadableComponent<BasePage> {
     WebDriver driver = CustomWebDriver.getDriver();
-    private static Header header;
-    private static Footer footer;
+    private Header header;
+    private Footer footer;
 
 
     public BasePage() {
         header = new Header(this.driver);
         footer = new Footer(this.driver);
-    }
-
-    public static Header getHeader() {
-        return header;
-    }
-
-    public static Footer getFooter() {
-        return footer;
     }
 
     @Override
@@ -37,13 +32,13 @@ public class BasePage extends LoadableComponent<BasePage> {
     }
 
     public void jsIsLoaded() throws Error {
-        if(!WaitHelper.waitForJStoLoad()) {
+        if (!WaitHelper.waitForJStoLoad()) {
             throw new Error("Page was not successfully loaded");
         }
     }
 
     public void jqeryIsLoaded() throws Error {
-        if(!WaitHelper.waitForJQueryToLoad()) {
+        if (!WaitHelper.waitForJQueryToLoad()) {
             throw new Error("Page was not successfully loaded");
         }
     }

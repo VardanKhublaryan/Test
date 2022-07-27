@@ -16,8 +16,10 @@ public class WaitHelper {
 
     public static void waitUntilElementClickable(WebElement webElement) {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger())).until(ExpectedConditions.visibilityOf(webElement));
-            new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger())).until(ExpectedConditions.elementToBeClickable(webElement));
+            new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger())).
+                    until(ExpectedConditions.visibilityOf(webElement));
+            new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger())).
+                    until(ExpectedConditions.elementToBeClickable(webElement));
         } catch (Exception e) {
             System.out.println(e + webElement.getText() + "is not displayed");
 

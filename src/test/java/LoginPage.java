@@ -1,9 +1,9 @@
 import com.company.swaglabs.components.Header;
 import com.company.swaglabs.pages.LoginPageClass;
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import static com.company.swaglabs.components.Header.menuBarIsVisibility;
+import static com.company.swaglabs.components.Header.*;
 import static com.company.swaglabs.constants.LogInData.*;
 import static com.company.swaglabs.pages.LoginPageClass.*;
 

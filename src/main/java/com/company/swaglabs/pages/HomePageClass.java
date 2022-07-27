@@ -61,7 +61,7 @@ public class HomePageClass extends BasePage {
 
     }
 
-    public static void allItemsVisibilityOf() {
+    public void allItemsVisibilityOf() {
         isDisplayed(getHeader().getAllItems());
     }
 
@@ -139,12 +139,13 @@ public class HomePageClass extends BasePage {
         int randomIndex1 = random.nextInt(size);
         int randomIndex2 = random.nextInt(size);
 
-        Screenshot screenshot1 = new AShot().coordsProvider(new WebDriverCoordsProvider()).takeScreenshot(driver, imageItems.get(randomIndex1));
-        Screenshot screenshot2 = new AShot().coordsProvider(new WebDriverCoordsProvider()).takeScreenshot(driver, imageItems.get(randomIndex2));
+        Screenshot screenshot1 = new AShot().coordsProvider(new WebDriverCoordsProvider()).
+                takeScreenshot(driver, imageItems.get(randomIndex1));
+        Screenshot screenshot2 = new AShot().coordsProvider(new WebDriverCoordsProvider()).
+                takeScreenshot(driver, imageItems.get(randomIndex2));
 
         BufferedImage randomImageItem1 = screenshot1.getImage();
         BufferedImage randomImageItem2 = screenshot2.getImage();
-
 
         ImageDiffer imgDiff = new ImageDiffer();
         isDisplayed(imageItems.get(randomIndex1));

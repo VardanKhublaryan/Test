@@ -5,9 +5,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
-import ru.yandex.qatools.ashot.comparison.ImageDiffer;
 import ru.yandex.qatools.ashot.coordinates.WebDriverCoordsProvider;
-import com.company.swaglabs.utils.CustomWebDriver;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -18,10 +16,11 @@ import static com.company.swaglabs.utils.CustomWebDriver.*;
 
 
 public class MyListener implements ITestListener {
+    private int fileNum = 1;
+
     @Override
     public void onTestStart(ITestResult result) {
         System.out.println("Start: " + result.getName());
-
     }
 
     @Override
@@ -36,9 +35,12 @@ public class MyListener implements ITestListener {
                 takeScreenshot(getDriver());
 
         BufferedImage randomImageItem1 = screenshot1.getImage();
+        File file = new File("C:\\Users\\NR-Gaming-Front\\Pictures\\Screenshots\\" + "bug" + fileNum + ".png");
         try {
-            ImageIO.write(randomImageItem1, "png",
-                    new File("C:\\Users\\NR-Gaming-Front\\Pictures\\Screenshots"));
+            ImageIO.write(randomImageItem1, "png", file);
+            if (file.exists()) {
+                fileNum++;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

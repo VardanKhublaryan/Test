@@ -5,9 +5,9 @@ import com.company.swaglabs.components.Header;
 import com.company.swaglabs.utils.CustomWebDriver;
 import com.company.swaglabs.utils.LoadableComponent;
 import com.company.swaglabs.utils.WaitHelper;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.openqa.selenium.WebDriver;
+
 
 @EqualsAndHashCode(callSuper = true)
 @Data

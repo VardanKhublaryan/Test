@@ -61,7 +61,7 @@ public class HomePageClass extends BasePage {
 
     }
 
-    public  void allItemsVisibilityOf() {
+    public void allItemsVisibilityOf() {
         isDisplayed(getHeader().getAllItems());
     }
 

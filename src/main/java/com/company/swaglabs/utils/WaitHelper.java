@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-import static com.company.swaglabs.constants.LogInData.TIME_OUT;
+import static com.company.swaglabs.constants.LogInData.*;
 
 public class WaitHelper {
     private static WebDriver driver = CustomWebDriver.getDriver();

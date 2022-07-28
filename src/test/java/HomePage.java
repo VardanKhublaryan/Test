@@ -22,7 +22,7 @@ public class HomePage extends BaseTest {
     @BeforeMethod
     public void login() {
         new LoginPageClass(driver);
-        loginn(STANDARD_USER, PASSWORD);
+        loginn(PROBLEM_USER, PASSWORD);
         HomePageClass homePageClass = new HomePageClass(getDriver());
         homePageClass.get();
     }

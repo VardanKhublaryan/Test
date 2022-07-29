@@ -16,7 +16,6 @@ import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
 import static com.company.swaglabs.utils.MyLog4j.*;
 
 
-
 public class MyListener implements ITestListener {
     private int fileNum = 1;
 
@@ -37,7 +36,6 @@ public class MyListener implements ITestListener {
 
         Screenshot screenshot1 = new AShot().coordsProvider(new WebDriverCoordsProvider()).
                 takeScreenshot(getDriver());
-
         BufferedImage randomImageItem1 = screenshot1.getImage();
         File file = new File("C:\\Users\\user\\bugsScreenshot\\" + "bug" + fileNum + ".png");
         try {

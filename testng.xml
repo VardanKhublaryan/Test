@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Component Tests" verbose="2" annotations="JDK">
+<suite name="Component Tests" verbose="2" parallel="tests" thread-count="3" annotations="JDK">
     <listeners>
         <listener class-name="com.company.swaglabs.utils.MyListener"/>
     </listeners>

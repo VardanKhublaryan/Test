@@ -14,10 +14,12 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
-import static com.company.swaglabs.constants.Urls.HOMPAGE_URL;
+import static com.company.swaglabs.constants.Urls.*;
 import static com.company.swaglabs.utils.CustomWebElement.click;
 import static com.company.swaglabs.utils.CustomWebElement.isDisplayed;
 import static com.company.swaglabs.utils.WaitHelper.waitUntilElementClickable;
@@ -53,6 +55,8 @@ public class HomePageClass extends BasePage {
     private WebElement addToCart;
     @FindBy(id = "continue-shopping")
     private static WebElement continueShopping;
+    @FindBy(css = "[class='r-1cvl2hr r-4qtqp9 r-yyyyoo r-16y2uox r-8kz0gk r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp']")
+    private WebElement twittwrLogo;
 
 
     public HomePageClass(WebDriver driver) {
@@ -180,6 +184,26 @@ public class HomePageClass extends BasePage {
         }
         super.jsIsLoaded();
         return this;
+    }
+
+    public void clickOnTwitter() {
+        isDisplayed(getFooter().getTwitter());
+        click(getFooter().getTwitter());
+    }
+
+    public boolean twitterLogoIsDisplayed() {
+        String mainwindow = driver.getWindowHandle();
+        Set<String> s1 = driver.getWindowHandles();
+        Iterator<String> i1 = s1.iterator();
+
+        while (i1.hasNext()) {
+            String ChildWindow = i1.next();
+            if (!mainwindow.equalsIgnoreCase(ChildWindow)) {
+                driver.switchTo().window(ChildWindow);
+            }
+
+        }
+        return isDisplayed(twittwrLogo);
     }
 }
 

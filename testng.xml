@@ -1,11 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Component Tests" verbose="2" parallel="tests" thread-count="3" annotations="JDK">
+
     <listeners>
         <listener class-name="com.company.swaglabs.utils.MyListener"/>
     </listeners>
+
     <test name="Test" preserve-order="true" >
 
+        <parameter name="browser" value="chrome" />
+        <parameter name="Port" value="9001" />
         <classes>
+
             <class name="BaseTest" />
             <class name="LoginPage" />
             <class name="HomePage" />

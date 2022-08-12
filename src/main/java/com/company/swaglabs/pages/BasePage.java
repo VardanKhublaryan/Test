@@ -5,7 +5,8 @@ import com.company.swaglabs.components.Header;
 import com.company.swaglabs.utils.CustomWebDriver;
 import com.company.swaglabs.utils.LoadableComponent;
 import com.company.swaglabs.utils.WaitHelper;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.openqa.selenium.WebDriver;
 
 
@@ -18,6 +19,7 @@ public class BasePage extends LoadableComponent<BasePage> {
 
 
     public BasePage() {
+
         header = new Header(this.driver);
         footer = new Footer(this.driver);
     }

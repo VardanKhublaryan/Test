@@ -12,8 +12,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
-import static com.company.swaglabs.utils.MyLog4j.*;
+import static com.company.swaglabs.utils.CustomWebDriver.*;
+import static com.company.swaglabs.utils.MyLog4j.error;
+import static com.company.swaglabs.utils.MyLog4j.info;
 
 
 public class MyListener implements ITestListener {

@@ -1,31 +1,31 @@
-import com.company.swaglabs.utils.CustomWebDriver;
-import com.company.swaglabs.utils.WaitHelper;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import java.time.Duration;
+
+import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
+import static com.company.swaglabs.utils.CustomWebDriver.setDriver;
 
 @Test
 public class BaseTest {
-    WebDriver driver = CustomWebDriver.getDriver();
-    protected static ThreadLocal<WebDriver> threadLocalDriver =  new ThreadLocal<WebDriver>();
-
+    WebDriver driver;
 
     @BeforeMethod
     public void setUp() {
-        threadLocalDriver.set(driver);
-        WaitHelper.waitForJStoLoad();
-        driver.manage().window().maximize();
+        driver = getDriver();
         driver.get("https://www.saucedemo.com/");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    public static WebDriver getDriver() {
-        return threadLocalDriver.get();
-    }
 
-    @AfterSuite
+
+    @AfterMethod
     public void treeUp() {
-        driver.quit();
-        threadLocalDriver.remove();
+        if (driver != null) {
+            getDriver().quit();
+            setDriver(null);
+        }
     }
 }

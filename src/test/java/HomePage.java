@@ -160,14 +160,24 @@ public class HomePage extends BaseTest {
 
     @Test
     public void twitter() {
-        BasePage basePage = new BasePage();
-        basePage.getFooter().getTwitter();
-
         new HomePageClass(getDriver()).
                 clickOnTwitter();
-
-        HomePageClass homePageClass = new HomePageClass(getDriver());
         Assert.assertTrue(homePageClass.twitterLogoIsDisplayed());
     }
+
+    @Test
+    public void facebook() {
+        new HomePageClass(getDriver()).
+                clickOnFacebook();
+        Assert.assertTrue(homePageClass.facebookIsDisplayed());
+    }
+
+    @Test
+    public void linkedIn() {
+        new HomePageClass(getDriver()).
+                clickOnLinkedIn();
+        Assert.assertTrue(homePageClass.linnkedInIsDisplayed());
+    }
+
 }
 

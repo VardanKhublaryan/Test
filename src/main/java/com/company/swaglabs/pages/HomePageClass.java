@@ -56,7 +56,12 @@ public class HomePageClass extends BasePage {
     @FindBy(id = "continue-shopping")
     private static WebElement continueShopping;
     @FindBy(css = "[class='r-1cvl2hr r-4qtqp9 r-yyyyoo r-16y2uox r-8kz0gk r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp']")
-    private WebElement twittwrLogo;
+    private WebElement twitterLogo;
+    @FindBy(linkText = "Watch Video")
+    private WebElement facebookElement;
+    @FindBy(className = "background")
+    WebElement linkedInIcon;
+
 
 
     public HomePageClass(WebDriver driver) {
@@ -191,6 +196,16 @@ public class HomePageClass extends BasePage {
         click(getFooter().getTwitter());
     }
 
+    public void clickOnFacebook() {
+        isDisplayed(getFooter().getFaceBook());
+        click(getFooter().getFaceBook());
+    }
+
+    public void clickOnLinkedIn(){
+        isDisplayed(getFooter().getLinkedIn());
+        click(getFooter().getLinkedIn());
+    }
+
     public boolean twitterLogoIsDisplayed() {
         String mainwindow = driver.getWindowHandle();
         Set<String> s1 = driver.getWindowHandles();
@@ -203,7 +218,37 @@ public class HomePageClass extends BasePage {
             }
 
         }
-        return isDisplayed(twittwrLogo);
+        return isDisplayed(twitterLogo);
+    }
+
+    public boolean facebookIsDisplayed(){
+        String mainwindow = driver.getWindowHandle();
+        Set<String> s1 = driver.getWindowHandles();
+        Iterator<String> i1 = s1.iterator();
+
+        while (i1.hasNext()) {
+            String ChildWindow = i1.next();
+            if (!mainwindow.equalsIgnoreCase(ChildWindow)) {
+                driver.switchTo().window(ChildWindow);
+            }
+
+        }
+        return isDisplayed(facebookElement);
+    }
+
+    public boolean linnkedInIsDisplayed(){
+        String mainwindow = driver.getWindowHandle();
+        Set<String> s1 = driver.getWindowHandles();
+        Iterator<String> i1 = s1.iterator();
+
+        while (i1.hasNext()) {
+            String ChildWindow = i1.next();
+            if (!mainwindow.equalsIgnoreCase(ChildWindow)) {
+                driver.switchTo().window(ChildWindow);
+            }
+
+        }
+        return isDisplayed(linkedInIcon);
     }
 }
 

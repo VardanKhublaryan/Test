@@ -18,13 +18,10 @@ import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
 public class HomePage extends BaseTest {
 
 
-    HomePageClass homePageClass = new HomePageClass(getDriver());
-
-
     @BeforeMethod
     public void login() {
         new LoginPageClass(getDriver());
-        loginn(STANDARD_USER, PASSWORD);
+        loginn(PROBLEM_USER, PASSWORD);
     }
 
     @Test
@@ -45,7 +42,7 @@ public class HomePage extends BaseTest {
 
     @Test()
     public void menuBar() {
-        new HomePageClass(getDriver());
+        HomePageClass homePageClass = new HomePageClass(getDriver());
         menuBarIsVisibility();
         clickOnMenuBar();
         homePageClass.allItemsVisibilityOf();
@@ -150,34 +147,17 @@ public class HomePage extends BaseTest {
         Assert.assertEquals(basePage.getFooter().footerTex(), FOOTER_TEXT.toString());
     }
 
+
     @Test
-    public void shopContainer() {
-        BasePage basePage = new BasePage();
+    public void checkShoppingCartBadge() {
         new HomePageClass(getDriver());
-        basePage.getHeader().clickOnShopContainer();
-        clickToContinueShopping();
+        int i = 1;
+        for (int j = 0; j < getAddToCardAndRemoveSize(); j++) {
+            clickToAddToCartAndRemove(j);
+            Assert.assertTrue(shoppingCartBadgeIsDisplayed());
+            Assert.assertEquals(shoppingCartBadgeGetText(), Integer.toString(i));
+            i++;
+        }
     }
-
-    @Test
-    public void twitter() {
-        new HomePageClass(getDriver()).
-                clickOnTwitter();
-        Assert.assertTrue(homePageClass.twitterLogoIsDisplayed());
-    }
-
-    @Test
-    public void facebook() {
-        new HomePageClass(getDriver()).
-                clickOnFacebook();
-        Assert.assertTrue(homePageClass.facebookIsDisplayed());
-    }
-
-    @Test
-    public void linkedIn() {
-        new HomePageClass(getDriver()).
-                clickOnLinkedIn();
-        Assert.assertTrue(homePageClass.linnkedInIsDisplayed());
-    }
-
 }
 

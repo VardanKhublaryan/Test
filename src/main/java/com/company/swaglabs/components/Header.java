@@ -41,6 +41,9 @@ public class Header {
     public void clickOnShopContainer() {
         click(shopContainer);
     }
+    public static boolean shopContainerIsDisplayed(){
+        return isDisplayed(shopContainer);
+    }
 
     public WebElement getLogo() {
         return logo;

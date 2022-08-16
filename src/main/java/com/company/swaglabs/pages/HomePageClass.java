@@ -14,12 +14,10 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
-import static com.company.swaglabs.constants.Urls.*;
+import static com.company.swaglabs.constants.Urls.HOMPAGE_URL;
 import static com.company.swaglabs.utils.CustomWebElement.click;
 import static com.company.swaglabs.utils.CustomWebElement.isDisplayed;
 import static com.company.swaglabs.utils.WaitHelper.waitUntilElementClickable;
@@ -52,16 +50,11 @@ public class HomePageClass extends BasePage {
     @FindBy(css = "[class='btn btn_secondary btn_small btn_inventory']")
     private WebElement remove;
     @FindBy(css = "[class='btn btn_primary btn_small btn_inventory']")
-    private WebElement addToCart;
-    @FindBy(id = "continue-shopping")
-    private static WebElement continueShopping;
-    @FindBy(css = "[class='r-1cvl2hr r-4qtqp9 r-yyyyoo r-16y2uox r-8kz0gk r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp']")
-    private WebElement twitterLogo;
-    @FindBy(linkText = "Watch Video")
-    private WebElement facebookElement;
-    @FindBy(className = "background")
-    WebElement linkedInIcon;
-
+    private static WebElement addToCart;
+    @FindBy(id = "checkout")
+    private static WebElement checoutButton;
+    @FindBy(className = "shopping_cart_badge")
+    private static WebElement shoppingCartBadge;
 
 
     public HomePageClass(WebDriver driver) {
@@ -126,6 +119,10 @@ public class HomePageClass extends BasePage {
         click(addToCartsAndRemove.get(index));
     }
 
+    public static boolean addToCardIsDisplayed() {
+        return isDisplayed(addToCart);
+    }
+
     public static int getAddToCardAndRemoveSize() {
         return addToCartsAndRemove.size();
     }
@@ -145,13 +142,21 @@ public class HomePageClass extends BasePage {
     public static boolean compareImageItems() {
         Random random = new Random();
         int size = imageItems.size();
-        int randomIndex1 = random.nextInt(size);
-        int randomIndex2 = random.nextInt(size);
+        int randomIndex1 = random.nextInt(size/2);
+        int randomIndex2 = random.nextInt(size/2,size);
 
+        String image1Url = imageItems.get(randomIndex1).getAttribute("src");
+        String image2Url = imageItems.get(randomIndex2).getAttribute("src");
+
+        driver.navigate().to(image1Url);
         Screenshot screenshot1 = new AShot().coordsProvider(new WebDriverCoordsProvider()).
-                takeScreenshot(driver, imageItems.get(randomIndex1));
+                takeScreenshot(driver);
+        driver.navigate().back();
+        driver.navigate().to(image2Url);
         Screenshot screenshot2 = new AShot().coordsProvider(new WebDriverCoordsProvider()).
-                takeScreenshot(driver, imageItems.get(randomIndex2));
+                takeScreenshot(driver);
+        driver.navigate().back();
+
 
         BufferedImage randomImageItem1 = screenshot1.getImage();
         BufferedImage randomImageItem2 = screenshot2.getImage();
@@ -169,9 +174,6 @@ public class HomePageClass extends BasePage {
         return diff.hasDiff();
     }
 
-    public static void clickToContinueShopping() {
-        click(continueShopping);
-    }
 
     @Override
     protected void load() {
@@ -191,64 +193,19 @@ public class HomePageClass extends BasePage {
         return this;
     }
 
-    public void clickOnTwitter() {
-        isDisplayed(getFooter().getTwitter());
-        click(getFooter().getTwitter());
+    public static boolean checkoutButtonIsDisplayed() {
+        return isDisplayed(checoutButton);
     }
 
-    public void clickOnFacebook() {
-        isDisplayed(getFooter().getFaceBook());
-        click(getFooter().getFaceBook());
+    public static boolean shoppingCartBadgeIsDisplayed() {
+        return isDisplayed(shoppingCartBadge);
     }
 
-    public void clickOnLinkedIn(){
-        isDisplayed(getFooter().getLinkedIn());
-        click(getFooter().getLinkedIn());
+    public static String shoppingCartBadgeGetText() {
+        return shoppingCartBadge.getText();
     }
 
-    public boolean twitterLogoIsDisplayed() {
-        String mainwindow = driver.getWindowHandle();
-        Set<String> s1 = driver.getWindowHandles();
-        Iterator<String> i1 = s1.iterator();
-
-        while (i1.hasNext()) {
-            String ChildWindow = i1.next();
-            if (!mainwindow.equalsIgnoreCase(ChildWindow)) {
-                driver.switchTo().window(ChildWindow);
-            }
-
-        }
-        return isDisplayed(twitterLogo);
-    }
-
-    public boolean facebookIsDisplayed(){
-        String mainwindow = driver.getWindowHandle();
-        Set<String> s1 = driver.getWindowHandles();
-        Iterator<String> i1 = s1.iterator();
-
-        while (i1.hasNext()) {
-            String ChildWindow = i1.next();
-            if (!mainwindow.equalsIgnoreCase(ChildWindow)) {
-                driver.switchTo().window(ChildWindow);
-            }
-
-        }
-        return isDisplayed(facebookElement);
-    }
-
-    public boolean linnkedInIsDisplayed(){
-        String mainwindow = driver.getWindowHandle();
-        Set<String> s1 = driver.getWindowHandles();
-        Iterator<String> i1 = s1.iterator();
-
-        while (i1.hasNext()) {
-            String ChildWindow = i1.next();
-            if (!mainwindow.equalsIgnoreCase(ChildWindow)) {
-                driver.switchTo().window(ChildWindow);
-            }
-
-        }
-        return isDisplayed(linkedInIcon);
-    }
 }
+
+
 

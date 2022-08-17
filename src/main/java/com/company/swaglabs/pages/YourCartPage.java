@@ -77,7 +77,7 @@ public class YourCartPage {
         return isDisplayed(backToHome);
     }
 
-    public static void clickTobackToHome() {
+    public static void clickToBackToHome() {
         click(backToHome);
     }
 
@@ -91,7 +91,7 @@ public class YourCartPage {
         return summaryInfo.get(1).getText();
     }
 
-    public static String seuceCartGetText() {
+    public static String sauceCartGetText() {
         isDisplayed(summaryValue.get(0));
         return summaryValue.get(0).getText();
     }
@@ -117,6 +117,15 @@ public class YourCartPage {
 
     public static boolean checkTax() {
         return itemTotalGetNumber() / getTaxValue() >= 12.4 || itemTotalGetNumber() / getTaxValue() <= 12.5;
+    }
+
+    public static Double getTotalNumber(){
+        String total = totalLabel.getText().substring(8);
+        return Double.parseDouble(total);
+    }
+
+    public static boolean checkTotal(){
+        return getTotalNumber() == getTaxValue() + itemTotalGetNumber();
     }
 }
 

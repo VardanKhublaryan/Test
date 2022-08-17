@@ -22,7 +22,6 @@ public class YourCart extends BaseTest {
         new HomePageClass(getDriver());
         clickOnShopContainer();
         Assert.assertTrue(checkoutButtonIsDisplayed());
-
     }
 
     @Test
@@ -45,7 +44,7 @@ public class YourCart extends BaseTest {
         new YourCartPage(getDriver());
         checkOutInformation();
         Assert.assertEquals(paymentInfoGetText(), PAYMENTINFO.toString());
-        Assert.assertEquals(seuceCartGetText(), SAUCECARD.toString());
+        Assert.assertEquals(sauceCartGetText(), SAUCECARD.toString());
         Assert.assertEquals(freePonyExpressGetText(), FREEPONYEXPRESS.toString());
         Assert.assertEquals(shippingInfoText(), SHIPPINGINFO.toString());
     }
@@ -59,7 +58,7 @@ public class YourCart extends BaseTest {
         clickToFinishButton();
         Assert.assertTrue(backToHomeIsDisplayed());
 
-        clickTobackToHome();
+        clickToBackToHome();
         Assert.assertTrue((shopContainerIsDisplayed()));
     }
 
@@ -82,9 +81,10 @@ public class YourCart extends BaseTest {
 
 
     @Test
-    public void tax(){
+    public void taxAndTotal(){
         new YourCartPage(getDriver());
         itemTotal();
         Assert.assertTrue(checkTax());
+        Assert.assertTrue(checkTotal());
     }
 }

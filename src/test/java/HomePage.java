@@ -21,7 +21,7 @@ public class HomePage extends BaseTest {
     @BeforeMethod
     public void login() {
         new LoginPageClass(getDriver());
-        loginn(PROBLEM_USER, PASSWORD);
+        loginn(STANDARD_USER, PASSWORD);
     }
 
     @Test

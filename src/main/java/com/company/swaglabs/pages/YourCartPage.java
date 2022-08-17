@@ -116,7 +116,6 @@ public class YourCartPage {
     }
 
     public static boolean checkTax() {
-        System.out.println(itemTotalGetNumber() / getTaxValue());
         return itemTotalGetNumber() / getTaxValue() >= 12.4 || itemTotalGetNumber() / getTaxValue() <= 12.5;
     }
 }

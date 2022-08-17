@@ -36,6 +36,8 @@ public class YourCartPage {
     private static List<WebElement> summaryValue;
     @FindBy(className = "summary_subtotal_label")
     private static WebElement itemTotal;
+    @FindBy(className = "summary_tax_label")
+    private static WebElement tax;
 
 
     public YourCartPage(WebDriver driver) {
@@ -103,6 +105,19 @@ public class YourCartPage {
         return itemTotal.getText().substring(12);
     }
 
+    public static Double itemTotalGetNumber() {
+        String itemText = itemTotal.getText().substring(13);
+        return Double.parseDouble(itemText);
+    }
 
+    public static Double getTaxValue() {
+        String taxText = tax.getText().substring(6);
+        return Double.parseDouble(taxText);
+    }
+
+    public static boolean checkTax() {
+        System.out.println(itemTotalGetNumber() / getTaxValue());
+        return itemTotalGetNumber() / getTaxValue() >= 12.4 || itemTotalGetNumber() / getTaxValue() <= 12.5;
+    }
 }
 

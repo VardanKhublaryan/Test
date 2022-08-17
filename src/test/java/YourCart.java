@@ -64,7 +64,7 @@ public class YourCart extends BaseTest {
     }
 
     @Test
-    public static void itemTotal() throws InterruptedException {
+    public void itemTotal(){
         new YourCartPage(getDriver());
         new HomePageClass(getDriver());
 
@@ -78,9 +78,13 @@ public class YourCart extends BaseTest {
         checkOutInformation();
 
         Assert.assertEquals(itemTotalGetValue(), itemPrice);
-
-
     }
 
 
+    @Test
+    public void tax(){
+        new YourCartPage(getDriver());
+        itemTotal();
+        Assert.assertTrue(checkTax());
+    }
 }

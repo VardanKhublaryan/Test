@@ -38,7 +38,7 @@ public class Header {
         return false;
     }
 
-    public void clickOnShopContainer() {
+    public static void clickOnShopContainer() {
         click(shopContainer);
     }
     public static boolean shopContainerIsDisplayed(){

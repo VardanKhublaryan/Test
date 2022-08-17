@@ -5,11 +5,12 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Random;
+
+import static com.company.swaglabs.components.Header.clickOnShopContainer;
 import static com.company.swaglabs.components.Header.shopContainerIsDisplayed;
 import static com.company.swaglabs.constants.ChecOutOverview.*;
-import static com.company.swaglabs.constants.ChecOutOverview.SHIPPINGINFO;
-import static com.company.swaglabs.pages.HomePageClass.addToCardIsDisplayed;
-import static com.company.swaglabs.pages.HomePageClass.checkoutButtonIsDisplayed;
+import static com.company.swaglabs.pages.HomePageClass.*;
 import static com.company.swaglabs.pages.YourCartPage.*;
 import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
 
@@ -17,9 +18,9 @@ public class YourCart extends BaseTest {
     @BeforeMethod
     public void goToYourCartPage() {
         new LoginPage().login();
-        BasePage basePage = new BasePage();
+        new BasePage();
         new HomePageClass(getDriver());
-        basePage.getHeader().clickOnShopContainer();
+        clickOnShopContainer();
         Assert.assertTrue(checkoutButtonIsDisplayed());
 
     }
@@ -54,10 +55,31 @@ public class YourCart extends BaseTest {
         new YourCartPage(getDriver());
         checkOutInformation();
         Assert.assertTrue(paymentInfoIsDisplayed());
+
         clickToFinishButton();
         Assert.assertTrue(backToHomeIsDisplayed());
+
         clickTobackToHome();
         Assert.assertTrue((shopContainerIsDisplayed()));
+    }
+
+    @Test
+    public static void itemTotal() throws InterruptedException {
+        new YourCartPage(getDriver());
+        new HomePageClass(getDriver());
+
+        Random random = new Random();
+        clickToContinueShopping();
+        int item = random.nextInt(getAddToCardAndRemoveSize());
+        String itemPrice = itemsPricesText(item);
+
+        clickToAddToCartAndRemove(item);
+        clickOnShopContainer();
+        checkOutInformation();
+
+        Assert.assertEquals(itemTotalGetValue(), itemPrice);
+
+
     }
 
 

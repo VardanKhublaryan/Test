@@ -34,6 +34,8 @@ public class YourCartPage {
     private static List<WebElement> summaryInfo;
     @FindBy(className = "summary_value_label")
     private static List<WebElement> summaryValue;
+    @FindBy(className = "summary_subtotal_label")
+    private static WebElement itemTotal;
 
 
     public YourCartPage(WebDriver driver) {
@@ -96,6 +98,11 @@ public class YourCartPage {
         isDisplayed(summaryValue.get(1));
         return summaryValue.get(1).getText();
     }
+
+    public static String itemTotalGetValue() {
+        return itemTotal.getText().substring(12);
+    }
+
 
 }
 

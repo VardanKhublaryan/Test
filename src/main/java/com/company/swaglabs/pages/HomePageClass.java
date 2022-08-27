@@ -52,9 +52,11 @@ public class HomePageClass extends BasePage {
     @FindBy(css = "[class='btn btn_primary btn_small btn_inventory']")
     private static WebElement addToCart;
     @FindBy(id = "checkout")
-    private static WebElement checoutButton;
+    private static WebElement checkOutButton;
     @FindBy(className = "shopping_cart_badge")
     private static WebElement shoppingCartBadge;
+    @FindBy(id = "logout_sidebar_link")
+    private static WebElement logOut;
 
 
     public HomePageClass(WebDriver driver) {
@@ -194,7 +196,7 @@ public class HomePageClass extends BasePage {
     }
 
     public static boolean checkoutButtonIsDisplayed() {
-        return isDisplayed(checoutButton);
+        return isDisplayed(checkOutButton);
     }
 
     public static boolean shoppingCartBadgeIsDisplayed() {
@@ -203,6 +205,10 @@ public class HomePageClass extends BasePage {
 
     public static String shoppingCartBadgeGetText() {
         return shoppingCartBadge.getText();
+    }
+
+    public static void clickToLogOutButton(){
+        click(logOut);
     }
 
 }

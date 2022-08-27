@@ -15,6 +15,8 @@ import static com.company.swaglabs.pages.YourCartPage.*;
 import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
 
 public class YourCart extends BaseTest {
+
+
     @BeforeMethod
     public void goToYourCartPage() {
         new LoginPage().login();

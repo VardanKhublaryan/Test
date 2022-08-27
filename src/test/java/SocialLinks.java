@@ -5,8 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.company.swaglabs.constants.LogInData.PASSWORD;
-import static com.company.swaglabs.constants.LogInData.STANDARD_USER;
+import static com.company.swaglabs.constants.LogInData.*;
 import static com.company.swaglabs.pages.LoginPageClass.loginn;
 import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
 @Test

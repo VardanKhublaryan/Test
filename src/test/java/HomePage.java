@@ -1,3 +1,4 @@
+import com.company.swaglabs.components.Header;
 import com.company.swaglabs.constants.ItemsTexts;
 import com.company.swaglabs.pages.BasePage;
 import com.company.swaglabs.pages.HomePageClass;
@@ -7,11 +8,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static com.company.swaglabs.components.Header.clickOnMenuBar;
-import static com.company.swaglabs.components.Header.menuBarIsVisibility;
+import static com.company.swaglabs.components.Header.*;
 import static com.company.swaglabs.constants.LogInData.*;
 import static com.company.swaglabs.pages.HomePageClass.*;
-import static com.company.swaglabs.pages.LoginPageClass.loginn;
+import static com.company.swaglabs.pages.LoginPageClass.*;
 import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
 
 @Test
@@ -46,6 +46,23 @@ public class HomePage extends BaseTest {
         menuBarIsVisibility();
         clickOnMenuBar();
         homePageClass.allItemsVisibilityOf();
+    }
+
+    @Test
+    public void logOut(){
+        new HomePageClass(getDriver());
+        menuBar();
+        clickToLogOutButton();
+        Assert.assertTrue(logoVisibilityOf());
+    }
+
+    @Test
+    public void about(){
+        new HomePageClass(getDriver());
+        new Header(getDriver());
+        menuBar();
+        clickAboutButton();
+        Assert.assertTrue(iconIsDisplayed());
     }
 
     @Test

@@ -20,6 +20,10 @@ public class Header {
     private static WebElement shopContainer;
     @FindBy(id = "inventory_sidebar_link")
     private static WebElement allItems;
+    @FindBy(id = "about_sidebar_link")
+    private static WebElement about;
+    @FindBy(className = "nav-image-link")
+    private static WebElement iconInAboutPage;
 
     public Header(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -32,10 +36,7 @@ public class Header {
     }
 
     public static boolean menuBarIsVisibility() {
-        if (isDisplayed(menuBar)) {
-            return true;
-        }
-        return false;
+        return isDisplayed(menuBar);
     }
 
     public static void clickOnShopContainer() {
@@ -51,6 +52,14 @@ public class Header {
 
     public WebElement getAllItems() {
         return allItems;
+    }
+
+    public static void clickAboutButton(){
+        click(about);
+    }
+
+    public static boolean iconIsDisplayed(){
+        return isDisplayed(iconInAboutPage);
     }
 
 }

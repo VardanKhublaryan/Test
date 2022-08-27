@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-import static com.company.swaglabs.constants.Urls.HOMPAGE_URL;
+import static com.company.swaglabs.constants.Urls.HOMEPAGE_URL;
 import static com.company.swaglabs.utils.CustomWebElement.click;
 import static com.company.swaglabs.utils.CustomWebElement.isDisplayed;
 import static com.company.swaglabs.utils.WaitHelper.waitUntilElementClickable;
@@ -177,7 +177,7 @@ public class HomePageClass extends BasePage {
 
     @Override
     protected void load() {
-        driver.get(HOMPAGE_URL.toString());
+        driver.get(HOMEPAGE_URL.toString());
     }
 
     @Override

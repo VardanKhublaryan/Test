@@ -19,7 +19,6 @@ public class SocialLinks extends BaseTest{
         loginn(STANDARD_USER, PASSWORD);
     }
 
-
     @Test
     public void twitter() {
         SocialLinksClass socialLinksClass = new SocialLinksClass(getDriver());

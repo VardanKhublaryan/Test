@@ -10,10 +10,7 @@
         <parameter name="browser" value="chrome" />
         <parameter name="Port" value="9001" />
         <classes>
-            <class name="LoginPage"/>
             <class name="HomePage"/>
-            <class name="SocialLinks"/>
-            <class name="YourCart"/>
         </classes>
     </test>
 </suite>

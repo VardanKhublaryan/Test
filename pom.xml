@@ -12,6 +12,7 @@
 
 
     <properties>
+        <testng_xml>testng.xml</testng_xml>
         <allure.version>2.17.2</allure.version>
         <java.version>1.8</java.version>
         <aspectj.version>1.9.5</aspectj.version>
@@ -29,7 +30,7 @@
                 <version>2.22.2</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>${testng_xml}</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"

@@ -19,7 +19,6 @@ public class BasePage extends LoadableComponent<BasePage> {
 
 
     public BasePage() {
-
         header = new Header(this.driver);
         footer = new Footer(this.driver);
     }

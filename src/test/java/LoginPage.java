@@ -34,4 +34,12 @@ public class LoginPage extends BaseTest {
         loginn(LOCKED_OUT_USER, PASSWORD);
         Assert.assertEquals(getErrorMsg(), "Epic sadface: Sorry, this user has been locked out.", "error message is not displayed");
     }
+
+    @Test
+    public void performanceGlitchUser(){
+        new LoginPageClass(getDriver());
+        loginn(PERFORMANCE_GLITCH_USER,PASSWORD);
+        Header.clickOnMenuBar();
+        Assert.assertTrue(menuBarIsVisibility(), "going to home page failed");
+    }
 }

@@ -38,6 +38,10 @@ public class YourCartPage {
     private static WebElement itemTotal;
     @FindBy(className = "summary_tax_label")
     private static WebElement tax;
+    @FindBy(className = "title")
+    private static WebElement checkOutTitle;
+    @FindBy(id = "cancel")
+    private static WebElement cancelButton;
 
 
     public YourCartPage(WebDriver driver) {
@@ -45,16 +49,24 @@ public class YourCartPage {
         PageFactory.initElements(driver, this);
     }
 
+    public static boolean continueShoppingIsDisplayed(){
+        return isDisplayed(continueShopping);
+    }
+
     public static void clickToContinueShopping() {
         click(continueShopping);
     }
 
-    public static void clickToCheckOutButton() {
-        click(checkOutButton);
+    public static void clickToCanselButton(){
+        click(cancelButton);
     }
 
-    public static boolean continueButtonIsDisplayed() {
-        return isDisplayed(continueButton);
+    public static boolean checkOutTitleIsDisplayeed(){
+        return isDisplayed(checkOutTitle);
+    }
+
+    public static void clickToCheckOutButton() {
+        click(checkOutButton);
     }
 
     public static void checkOutInformation() {

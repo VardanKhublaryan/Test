@@ -36,17 +36,19 @@ public class YourCart extends BaseTest {
     public void checkOut() {
         new YourCartPage(getDriver());
         clickToCheckOutButton();
-        Assert.assertTrue(continueButtonIsDisplayed());
+        Assert.assertTrue(checkOutTitleIsDisplayeed());
+        clickToCanselButton();
+        Assert.assertTrue(continueShoppingIsDisplayed());
     }
 
     @Test
     public void checkOutOverview() {
         new YourCartPage(getDriver());
         checkOutInformation();
-        Assert.assertEquals(paymentInfoGetText(), PAYMENTINFO.toString());
-        Assert.assertEquals(sauceCartGetText(), SAUCECARD.toString());
-        Assert.assertEquals(freePonyExpressGetText(), FREEPONYEXPRESS.toString());
-        Assert.assertEquals(shippingInfoText(), SHIPPINGINFO.toString());
+        Assert.assertEquals(paymentInfoGetText(), PAYMENT_INFO.toString());
+        Assert.assertEquals(sauceCartGetText(), SAUCE_CARD.toString());
+        Assert.assertEquals(freePonyExpressGetText(), FREE_PONY_EXPRESS.toString());
+        Assert.assertEquals(shippingInfoText(), SHIPPING_INFO.toString());
     }
 
     @Test
@@ -63,7 +65,7 @@ public class YourCart extends BaseTest {
     }
 
     @Test
-    public void itemTotal(){
+    public void itemTotal() {
         new YourCartPage(getDriver());
         new HomePageClass(getDriver());
 
@@ -79,9 +81,8 @@ public class YourCart extends BaseTest {
         Assert.assertEquals(itemTotalGetValue(), itemPrice);
     }
 
-
     @Test
-    public void taxAndTotal(){
+    public void taxAndTotal() {
         new YourCartPage(getDriver());
         itemTotal();
         Assert.assertTrue(checkTax());

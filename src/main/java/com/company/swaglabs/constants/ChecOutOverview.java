@@ -4,7 +4,8 @@ public enum ChecOutOverview {
     PAYMENT_INFO("Payment Information:"),
     SAUCE_CARD("SauceCard #31337"),
     SHIPPING_INFO("Shipping Information:"),
-    FREE_PONY_EXPRESS("FREE PONY EXPRESS DELIVERY!");
+    FREE_PONY_EXPRESS("FREE PONY EXPRESS DELIVERY!"),
+    ERROR_MESSAGE("Error: First Name is required");
 
     private final String string;
 

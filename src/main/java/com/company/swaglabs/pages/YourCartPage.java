@@ -42,6 +42,8 @@ public class YourCartPage {
     private static WebElement checkOutTitle;
     @FindBy(id = "cancel")
     private static WebElement cancelButton;
+    @FindBy(css = "[data-test='error']")
+    private static WebElement errorMassege;
 
 
     public YourCartPage(WebDriver driver) {
@@ -61,12 +63,20 @@ public class YourCartPage {
         click(cancelButton);
     }
 
-    public static boolean checkOutTitleIsDisplayeed(){
+    public static boolean checkOutTitleIsDisplayed(){
         return isDisplayed(checkOutTitle);
     }
 
     public static void clickToCheckOutButton() {
         click(checkOutButton);
+    }
+
+    public static void clickContinueButton(){
+        click(continueButton);
+    }
+
+    public static String getErrorMessage(){
+        return errorMassege.getText();
     }
 
     public static void checkOutInformation() {

@@ -38,7 +38,7 @@ public class YourCart extends BaseTest {
     public void checkOut() {
         new YourCartPage(getDriver());
         clickToCheckOutButton();
-        Assert.assertTrue(checkOutTitleIsDisplayeed());
+        Assert.assertTrue(checkOutTitleIsDisplayed());
         clickToCanselButton();
         Assert.assertTrue(continueShoppingIsDisplayed());
     }
@@ -51,6 +51,14 @@ public class YourCart extends BaseTest {
         Assert.assertEquals(sauceCartGetText(), SAUCE_CARD.toString());
         Assert.assertEquals(freePonyExpressGetText(), FREE_PONY_EXPRESS.toString());
         Assert.assertEquals(shippingInfoText(), SHIPPING_INFO.toString());
+    }
+
+    @Test
+    public void errorMessage(){
+        new YourCartPage(getDriver());
+        clickToCheckOutButton();
+        clickContinueButton();
+        Assert.assertEquals(ERROR_MESSAGE.toString(), getErrorMessage());
     }
 
     @Test
@@ -79,7 +87,6 @@ public class YourCart extends BaseTest {
         clickToAddToCartAndRemove(item);
         clickOnShopContainer();
         checkOutInformation();
-
         Assert.assertEquals(itemTotalGetValue(), itemPrice);
     }
 

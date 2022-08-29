@@ -8,14 +8,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class CustomWebDriver {
     private static WebDriver driver = null;
-    private static ChromeOptions options;
 
     private CustomWebDriver() {
     }
 
     private static ChromeOptions setOptions() {
         WebDriverManager.chromedriver().setup();
-        options = new ChromeOptions();
+        ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         return options;
     }

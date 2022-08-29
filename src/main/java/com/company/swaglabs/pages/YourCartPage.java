@@ -155,8 +155,6 @@ public class YourCartPage {
     }
 
     public static boolean checkTotal() {
-        System.out.println(getTaxValue() + itemTotalGetNumber());
-        System.out.println(getTotalNumber());
         return getTotalNumber() == getTaxValue() + itemTotalGetNumber();
     }
 }

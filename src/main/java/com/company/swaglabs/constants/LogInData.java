@@ -6,7 +6,7 @@ public enum LogInData {
     PROBLEM_USER("problem_user"),
     PERFORMANCE_GLITCH_USER("performance_glitch_user"),
     PASSWORD("secret_sauce"),
-    FOOTER_TEXT("© 2022 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy"),
+    FOOTER_TEXT(" 2022 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy"),
     TIME_OUT(5);
 
     private String userName;

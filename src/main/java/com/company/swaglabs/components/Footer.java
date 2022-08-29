@@ -39,7 +39,7 @@ public class Footer {
     }
 
     public String footerTex() {
-        return this.footerText.getText();
+        return this.footerText.getText().substring(1);
     }
 
     public WebElement getTwitterPage() {

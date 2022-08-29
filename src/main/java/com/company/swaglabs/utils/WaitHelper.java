@@ -14,15 +14,24 @@ import static com.company.swaglabs.constants.LogInData.*;
 public class WaitHelper {
     private static WebDriver driver = CustomWebDriver.getDriver();
 
+
     public static void waitUntilElementClickable(WebElement webElement) {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger())).
-                    until(ExpectedConditions.visibilityOf(webElement));
-            new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger())).
-                    until(ExpectedConditions.elementToBeClickable(webElement));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger()));
+            wait.until(ExpectedConditions.visibilityOf(webElement));
+            wait.until(ExpectedConditions.elementToBeClickable(webElement));
         } catch (Exception e) {
             System.out.println(e + webElement.getText() + "is not displayed");
+        }
+    }
 
+    public static void waitUntilElementSelected(WebElement webElement) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger()));
+            wait.until(ExpectedConditions.visibilityOf(webElement));
+            wait.until(ExpectedConditions.elementToBeSelected(webElement));
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -36,7 +45,6 @@ public class WaitHelper {
                     return ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
                 } catch (Exception e) {
                     return true;
-
                 }
             }
         };
@@ -50,9 +58,7 @@ public class WaitHelper {
             public Boolean apply(WebDriver driver) {
                 return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
                         .equals("complete");
-
             }
-
         };
         return wait.until(jsLoad);
     }

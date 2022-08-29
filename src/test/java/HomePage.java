@@ -99,7 +99,7 @@ public class HomePage extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         clickToZtoA();
         for (int i = 1; i < itemNamesSize(); i++) {
-            itemNamesIsDisplayed(i);
+            softAssert.assertTrue(itemNamesIsDisplayed(i));
             int b = itemNamesText(i).compareTo(itemNamesText(i - 1));
             softAssert.assertTrue(b <= 0, "false");
         }
@@ -112,7 +112,7 @@ public class HomePage extends BaseTest {
         SoftAssert softAssert = new SoftAssert();
         clickToAtoZ();
         for (int i = 1; i < itemNamesSize(); i++) {
-            itemNamesIsDisplayed(i);
+            softAssert.assertTrue(itemNamesIsDisplayed(i));
             int b = itemNamesText(i).compareTo(itemNamesText(i - 1));
             softAssert.assertTrue(b >= 0, "false");
         }

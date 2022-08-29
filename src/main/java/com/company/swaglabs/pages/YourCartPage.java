@@ -43,7 +43,7 @@ public class YourCartPage {
     @FindBy(id = "cancel")
     private static WebElement cancelButton;
     @FindBy(css = "[data-test='error']")
-    private static WebElement errorMassege;
+    private static WebElement errorMessage;
 
 
     public YourCartPage(WebDriver driver) {
@@ -51,7 +51,7 @@ public class YourCartPage {
         PageFactory.initElements(driver, this);
     }
 
-    public static boolean continueShoppingIsDisplayed(){
+    public static boolean continueShoppingIsDisplayed() {
         return isDisplayed(continueShopping);
     }
 
@@ -59,11 +59,11 @@ public class YourCartPage {
         click(continueShopping);
     }
 
-    public static void clickToCanselButton(){
+    public static void clickToCanselButton() {
         click(cancelButton);
     }
 
-    public static boolean checkOutTitleIsDisplayed(){
+    public static boolean checkOutTitleIsDisplayed() {
         return isDisplayed(checkOutTitle);
     }
 
@@ -71,12 +71,12 @@ public class YourCartPage {
         click(checkOutButton);
     }
 
-    public static void clickContinueButton(){
+    public static void clickContinueButton() {
         click(continueButton);
     }
 
-    public static String getErrorMessage(){
-        return errorMassege.getText();
+    public static String getErrorMessage() {
+        return errorMessage.getText();
     }
 
     public static void checkOutInformation() {
@@ -85,6 +85,14 @@ public class YourCartPage {
         fill(lastName, "Khublaryan");
         fill(postalCode, "G0L 1J0");
         click(continueButton);
+    }
+
+    public static void fillFirstName() {
+        fill(firstName, "Vardan");
+    }
+
+    public static void fillLastName() {
+        fill(lastName, "Khublaryan");
     }
 
     public static boolean paymentInfoIsDisplayed() {
@@ -127,26 +135,28 @@ public class YourCartPage {
         return itemTotal.getText().substring(12);
     }
 
-    public static Double itemTotalGetNumber() {
+    public static Float itemTotalGetNumber() {
         String itemText = itemTotal.getText().substring(13);
-        return Double.parseDouble(itemText);
+        return Float.parseFloat(itemText);
     }
 
-    public static Double getTaxValue() {
+    public static Float getTaxValue() {
         String taxText = tax.getText().substring(6);
-        return Double.parseDouble(taxText);
+        return Float.parseFloat(taxText);
     }
 
     public static boolean checkTax() {
         return itemTotalGetNumber() / getTaxValue() >= 12.4 || itemTotalGetNumber() / getTaxValue() <= 12.5;
     }
 
-    public static Double getTotalNumber(){
+    public static Float getTotalNumber() {
         String total = totalLabel.getText().substring(8);
-        return Double.parseDouble(total);
+        return Float.parseFloat(total);
     }
 
-    public static boolean checkTotal(){
+    public static boolean checkTotal() {
+        System.out.println(getTaxValue() + itemTotalGetNumber());
+        System.out.println(getTotalNumber());
         return getTotalNumber() == getTaxValue() + itemTotalGetNumber();
     }
 }

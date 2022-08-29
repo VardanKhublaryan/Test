@@ -3,7 +3,7 @@ import com.company.swaglabs.pages.LoginPageClass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.company.swaglabs.components.Header.menuBarIsVisibility;
+import static com.company.swaglabs.components.Header.*;
 import static com.company.swaglabs.constants.LogInData.*;
 import static com.company.swaglabs.pages.LoginPageClass.*;
 import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
@@ -11,7 +11,7 @@ import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
 
 public class LoginPage extends BaseTest {
 
-    @Test()
+    @Test
     public void login() {
         new LoginPageClass(getDriver());
         loginn(STANDARD_USER, PASSWORD);
@@ -24,9 +24,7 @@ public class LoginPage extends BaseTest {
         new LoginPageClass(getDriver());
         Assert.assertTrue(loginPageIconVisibilityOf(), "icon not displayed");
         Assert.assertTrue(logoVisibilityOf(), "logo is not displayed");
-        zoomOut();
     }
-
 
     @Test
     public void lockedOutUser() {

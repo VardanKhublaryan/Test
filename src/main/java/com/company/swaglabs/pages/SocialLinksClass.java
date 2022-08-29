@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.Iterator;
 import java.util.Set;
 
 import static com.company.swaglabs.utils.CustomWebElement.click;
@@ -42,13 +41,11 @@ public class SocialLinksClass extends BasePage {
     }
 
     public boolean twitterLogoIsDisplayed() {
-        String mainwindow = driver.getWindowHandle();
+        String mainWindow = driver.getWindowHandle();
         Set<String> s1 = driver.getWindowHandles();
-        Iterator<String> i1 = s1.iterator();
 
-        while (i1.hasNext()) {
-            String ChildWindow = i1.next();
-            if (!mainwindow.equalsIgnoreCase(ChildWindow)) {
+        for (String ChildWindow : s1) {
+            if (!mainWindow.equalsIgnoreCase(ChildWindow)) {
                 driver.switchTo().window(ChildWindow);
             }
 
@@ -57,13 +54,11 @@ public class SocialLinksClass extends BasePage {
     }
 
     public boolean facebookIsDisplayed() {
-        String mainwindow = driver.getWindowHandle();
+        String mainWindow = driver.getWindowHandle();
         Set<String> s1 = driver.getWindowHandles();
-        Iterator<String> i1 = s1.iterator();
 
-        while (i1.hasNext()) {
-            String ChildWindow = i1.next();
-            if (!mainwindow.equalsIgnoreCase(ChildWindow)) {
+        for (String ChildWindow : s1) {
+            if (!mainWindow.equalsIgnoreCase(ChildWindow)) {
                 driver.switchTo().window(ChildWindow);
             }
 
@@ -72,13 +67,11 @@ public class SocialLinksClass extends BasePage {
     }
 
     public boolean linkedInIsDisplayed() {
-        String mainwindow = driver.getWindowHandle();
+        String mainWindow = driver.getWindowHandle();
         Set<String> s1 = driver.getWindowHandles();
-        Iterator<String> i1 = s1.iterator();
 
-        while (i1.hasNext()) {
-            String ChildWindow = i1.next();
-            if (!mainwindow.equalsIgnoreCase(ChildWindow)) {
+        for (String ChildWindow : s1) {
+            if (!mainWindow.equalsIgnoreCase(ChildWindow)) {
                 driver.switchTo().window(ChildWindow);
             }
 

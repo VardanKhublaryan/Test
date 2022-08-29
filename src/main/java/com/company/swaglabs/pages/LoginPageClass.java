@@ -2,7 +2,6 @@ package com.company.swaglabs.pages;
 
 import com.company.swaglabs.constants.LogInData;
 import com.company.swaglabs.utils.CustomWebElement;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -55,11 +54,6 @@ public class LoginPageClass extends BasePage {
     public static String getErrorMsg() {
         isDisplayed(loginError);
         return loginError.getText();
-    }
-
-    public static void zoomOut() {
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("document.body.style.zoom = '1.5'");
     }
 
     @Override

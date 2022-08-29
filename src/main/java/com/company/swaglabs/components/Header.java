@@ -46,8 +46,8 @@ public class Header {
         return isDisplayed(shopContainer);
     }
 
-    public WebElement getLogo() {
-        return logo;
+    public static boolean logoIsDisplayed() {
+        return isDisplayed(logo);
     }
 
     public WebElement getAllItems() {

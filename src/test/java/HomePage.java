@@ -40,6 +40,12 @@ public class HomePage extends BaseTest {
         Assert.assertTrue(compareImageItems());
     }
 
+    @Test
+    public void logo(){
+        new Header(getDriver());
+        Assert.assertTrue(logoIsDisplayed());
+    }
+
     @Test()
     public void menuBar() {
         HomePageClass homePageClass = new HomePageClass(getDriver());

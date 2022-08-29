@@ -26,12 +26,10 @@ public enum ItemsTexts {
     }
 
     public static ItemsTexts[] getItemsTexts() {
-        ItemsTexts[] itemsTextsArr = {ITEM1, ITEM2, ITEM3, ITEM4, ITEM5, ITEM6};
-        return itemsTextsArr;
+        return new ItemsTexts[]{ITEM1, ITEM2, ITEM3, ITEM4, ITEM5, ITEM6};
     }
 
     public static ItemsTexts[] getItemsPrices() {
-        ItemsTexts[] itemPrices = {ITEM_PRICE1, ITEM_PRICE2, ITEM_PRICE3, ITEM_PRICE4, ITEM_PRICE5, ITEM_PRICE6};
-        return itemPrices;
+        return new ItemsTexts[]{ITEM_PRICE1, ITEM_PRICE2, ITEM_PRICE3, ITEM_PRICE4, ITEM_PRICE5, ITEM_PRICE6};
     }
 }

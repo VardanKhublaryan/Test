@@ -1,11 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Component Tests" verbose="2" parallel="tests" thread-count="3" annotations="JDK">
+<suite name="Component Tests" verbose="2" parallel="tests" thread-count="2" annotations="JDK">
 
     <listeners>
         <listener class-name="com.company.swaglabs.utils.MyListener"/>
     </listeners>
 
-    <test name="Test" preserve-order="true" >
+
+    <test name="ChromeTest" preserve-order="true" >
 
         <parameter name="browser" value="chrome" />
         <parameter name="Port" value="9001" />
@@ -16,4 +17,16 @@
             <class name="YourCart"/>
         </classes>
     </test>
+
+<!--    <test name="EdgeTest" preserve-order="true" >-->
+
+<!--        <parameter name="browser" value="edge" />-->
+<!--        <parameter name="Port" value="9001" />-->
+<!--        <classes>-->
+<!--            <class name="LoginPage"/>-->
+<!--            <class name="HomePage"/>-->
+<!--            <class name="SocialLinks"/>-->
+<!--            <class name="YourCart"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

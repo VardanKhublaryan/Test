@@ -10,15 +10,20 @@ import static com.company.swaglabs.utils.CustomWebDriver.setDriver;
 
 @Test
 public class BaseTest {
-    WebDriver driver;
+    private static WebDriver driver;
+    private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
     @BeforeMethod
     public void setUp() {
         driver = getDriver();
-        driver.get("https://www.saucedemo.com/");
+        driverThreadLocal.set(driver);
+        getThreadLocalDriver().get("https://www.saucedemo.com/");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
+    public static WebDriver getThreadLocalDriver() {
+        return driverThreadLocal.get();
+    }
 
 
     @AfterMethod
@@ -26,6 +31,7 @@ public class BaseTest {
         if (driver != null) {
             getDriver().quit();
             setDriver(null);
+            driverThreadLocal.remove();
         }
     }
 }

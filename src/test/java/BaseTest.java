@@ -25,7 +25,6 @@ public class BaseTest {
         return driverThreadLocal.get();
     }
 
-
     @AfterMethod
     public void treeUp() {
         if (driver != null) {

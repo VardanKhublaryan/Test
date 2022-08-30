@@ -8,6 +8,7 @@ import java.util.Properties;
 public class Configuration {
     public static final String chrome = getPropValues("chrome");
     public static final String edge = getPropValues("edge");
+    public static final String firefox = getPropValues("firefox");
 
     private static Properties getPropValues() throws IOException {
         InputStream inputStream = null;

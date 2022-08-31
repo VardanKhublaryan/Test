@@ -6,16 +6,15 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class Configuration {
-    public static final String chrome = getPropValues("chrome");
-    public static final String edge = getPropValues("edge");
-    public static final String firefox = getPropValues("firefox");
+    public static final String chrome = getPropValues("chrome_browser");
+    public static final String edge = getPropValues("edge_browser");
+    public static final String firefox = getPropValues("firefox_browser");
 
     private static Properties getPropValues() throws IOException {
         InputStream inputStream = null;
         Properties props = new Properties();
 
         try {
-
             String propFileName = "config.properties";
             inputStream = Configuration.class.getClassLoader().getResourceAsStream(propFileName);
 
@@ -24,7 +23,6 @@ public class Configuration {
             } else {
                 throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
             }
-
         } catch (Exception e) {
             System.out.println("Exception: " + e);
         } finally {
@@ -41,7 +39,6 @@ public class Configuration {
                 return getPropValues().getProperty(key);
             } catch (IOException e) {
                 e.printStackTrace();
-
             }
         }
         return System.getProperty(key);

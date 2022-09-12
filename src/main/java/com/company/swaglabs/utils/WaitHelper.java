@@ -51,7 +51,7 @@ public class WaitHelper {
         return wait.until(jQueryLoad);
     }
 
-    public static boolean waitForJStoLoad() {
+    public static boolean waitForJStoLoad(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger()));
         ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
             @Override

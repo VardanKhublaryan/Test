@@ -1,13 +1,12 @@
 package com.company.swaglabs.pages;
 
 import com.company.swaglabs.constants.LogInData;
-import com.company.swaglabs.utils.CustomWebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.company.swaglabs.constants.Urls.*;
+import static com.company.swaglabs.constants.Urls.LOGINPAGE_URL;
 import static com.company.swaglabs.utils.CustomWebElement.*;
 
 
@@ -28,13 +27,13 @@ public class LoginPageClass extends BasePage {
     @FindBy(className = "error-message-container")
     private static WebElement loginError;
 
-    private CustomWebElement customWebElement;
 
 
-    public LoginPageClass(WebDriver driver) {
+    public LoginPageClass(WebDriver driver){
+        super();
+        isLoaded();
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        customWebElement = new CustomWebElement(driver);
     }
 
     public static void loginn(LogInData userName, LogInData password) {

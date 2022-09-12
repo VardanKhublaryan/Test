@@ -14,7 +14,7 @@ public class BaseTest {
     private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp(){
         driver = getDriver();
         driverThreadLocal.set(driver);
         getThreadLocalDriver().get("https://www.saucedemo.com/");

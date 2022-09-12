@@ -9,7 +9,7 @@ import java.util.List;
 
 import static com.company.swaglabs.utils.CustomWebElement.*;
 
-public class YourCartPage {
+public class YourCartPage extends BasePage {
     private WebDriver driver;
 
     @FindBy(id = "continue-shopping")
@@ -47,6 +47,8 @@ public class YourCartPage {
 
 
     public YourCartPage(WebDriver driver) {
+        super();
+        isLoaded();
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

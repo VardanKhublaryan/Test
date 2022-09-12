@@ -19,7 +19,8 @@ public class SocialLinksClass extends BasePage {
     @FindBy(className = "background")
     private WebElement linkedInIcon;
 
-    public SocialLinksClass(WebDriver driver) {
+    public SocialLinksClass(WebDriver driver){
+        isLoaded();
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

@@ -60,12 +60,12 @@ public class HomePageClass extends BasePage {
 
 
     public HomePageClass(WebDriver driver) {
+        jsIsLoaded();
         this.driver = driver;
         PageFactory.initElements(driver, this);
-
     }
 
-    public void allItemsVisibilityOf() {
+    public  void allItemsVisibilityOf() {
         isDisplayed(getHeader().getAllItems());
     }
 
@@ -89,7 +89,7 @@ public class HomePageClass extends BasePage {
         return itemsNames.get(index).getText();
     }
 
-    public WebElement getFiltrButton() {
+    public WebElement getFilterButton() {
         return filtrButton;
     }
 
@@ -144,8 +144,8 @@ public class HomePageClass extends BasePage {
     public static boolean compareImageItems() {
         Random random = new Random();
         int size = imageItems.size();
-        int randomIndex1 = random.nextInt(size/2);
-        int randomIndex2 = random.nextInt(size/2,size);
+        int randomIndex1 = random.nextInt(size / 2);
+        int randomIndex2 = random.nextInt(size / 2, size);
 
         String image1Url = imageItems.get(randomIndex1).getAttribute("src");
         String image2Url = imageItems.get(randomIndex2).getAttribute("src");
@@ -207,7 +207,7 @@ public class HomePageClass extends BasePage {
         return shoppingCartBadge.getText();
     }
 
-    public static void clickToLogOutButton(){
+    public static void clickToLogOutButton() {
         click(logOut);
     }
 

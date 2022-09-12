@@ -36,7 +36,9 @@ public class CustomWebDriver {
         CustomWebDriver.driver = driver;
     }
 
-    public static WebDriver getDriver() {
+
+
+    public static WebDriver getDriver(){
         if (driver == null && browserName.equalsIgnoreCase(chrome)) {
             driver = new ChromeDriver(setOptions());
         } else if (driver == null && browserName.equalsIgnoreCase(edge)) {

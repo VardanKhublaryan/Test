@@ -10,12 +10,10 @@ import java.time.Duration;
 import static com.company.swaglabs.utils.WaitHelper.*;
 
 public class CustomWebElement {
-    private WebDriver driver;
-    private static WebDriverWait wait;
+    private static WebDriver driver = CustomWebDriver.getDriver();
+    private static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(8));;
 
-    public CustomWebElement(WebDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(this.driver, Duration.ofSeconds(3));
+    public CustomWebElement() {
     }
 
 

@@ -20,6 +20,7 @@ public class YourCart extends BaseTest {
     @BeforeMethod
     public void goToYourCartPage() {
         new LoginPage().login();
+        new YourCartPage(getDriver());
         new BasePage();
         new HomePageClass(getDriver());
         clickOnShopContainer();
@@ -28,15 +29,12 @@ public class YourCart extends BaseTest {
 
     @Test
     public void continueShopping() {
-        new HomePageClass(getDriver());
-        new YourCartPage(getDriver());
         clickToContinueShopping();
         Assert.assertTrue(addToCardIsDisplayed());
     }
 
     @Test
     public void checkOut() {
-        new YourCartPage(getDriver());
         clickToCheckOutButton();
         Assert.assertTrue(checkOutTitleIsDisplayed());
         clickToCanselButton();
@@ -45,7 +43,6 @@ public class YourCart extends BaseTest {
 
     @Test
     public void checkOutOverview() {
-        new YourCartPage(getDriver());
         checkOutInformation();
         Assert.assertEquals(paymentInfoGetText(), PAYMENT_INFO.toString());
         Assert.assertEquals(sauceCartGetText(), SAUCE_CARD.toString());
@@ -55,7 +52,6 @@ public class YourCart extends BaseTest {
 
     @Test
     public void errorMessage(){
-        new YourCartPage(getDriver());
         clickToCheckOutButton();
         clickContinueButton();
         Assert.assertEquals(getErrorMessage(),ERROR_MESSAGE.toString());
@@ -63,7 +59,6 @@ public class YourCart extends BaseTest {
 
     @Test
     public void fieldsErrorMessages(){
-        new YourCartPage(getDriver());
         clickToCheckOutButton();
         fillFirstName();
         clickContinueButton();
@@ -75,7 +70,6 @@ public class YourCart extends BaseTest {
 
     @Test
     public void checkOutInfo() {
-        new YourCartPage(getDriver());
         checkOutInformation();
         Assert.assertTrue(paymentInfoIsDisplayed());
 
@@ -88,9 +82,6 @@ public class YourCart extends BaseTest {
 
     @Test
     public void itemTotal() {
-        new YourCartPage(getDriver());
-        new HomePageClass(getDriver());
-
         Random random = new Random();
         clickToContinueShopping();
         int item = random.nextInt(getAddToCardAndRemoveSize());
@@ -104,7 +95,6 @@ public class YourCart extends BaseTest {
 
     @Test
     public void taxAndTotal() {
-        new YourCartPage(getDriver());
         itemTotal();
         Assert.assertTrue(checkTax());
         Assert.assertTrue(checkTotal());

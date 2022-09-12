@@ -29,11 +29,14 @@ public class BasePage extends LoadableComponent<BasePage> {
 
     @Override
     protected void isLoaded() throws Error {
+//        WaitHelper.waitForJStoLoad(driver);
         jsIsLoaded();
+
+
     }
 
     public void jsIsLoaded() throws Error {
-        if (!WaitHelper.waitForJStoLoad()) {
+        if (!WaitHelper.waitForJStoLoad(driver)) {
             throw new Error("Page was not successfully loaded");
         }
     }

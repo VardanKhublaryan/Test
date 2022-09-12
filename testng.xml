@@ -6,7 +6,7 @@
     </listeners>
 
 
-    <test name="ChromeTest" preserve-order="true" >
+    <test name="TestSuite" preserve-order="true" >
 
         <parameter name="browser" value="chrome" />
         <parameter name="Port" value="9001" />

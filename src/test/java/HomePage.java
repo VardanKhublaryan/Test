@@ -40,7 +40,7 @@ public class HomePage extends BaseTest {
     }
 
     @Test
-    public void logo(){
+    public void logo() {
         new Header(getDriver());
         Assert.assertTrue(logoIsDisplayed());
     }
@@ -53,14 +53,14 @@ public class HomePage extends BaseTest {
     }
 
     @Test
-    public void closeMenuBar(){
+    public void closeMenuBar() {
         clickOnMenuBar();
         clickOnCloseMenuBar();
         Assert.assertTrue(menuBarIsClosed());
     }
 
     @Test
-    public void allItems(){
+    public void allItems() {
         clickOnShopContainer();
         clickOnMenuBar();
         clickAllItemsButton();
@@ -68,7 +68,7 @@ public class HomePage extends BaseTest {
     }
 
     @Test
-    public void logOut(){
+    public void logOut() {
         new Header(getDriver());
         menuBar();
         new BasePage().getHeader().clickOnLogOutButton();
@@ -76,7 +76,7 @@ public class HomePage extends BaseTest {
     }
 
     @Test
-    public void about(){
+    public void about() {
         new Header(getDriver());
         menuBar();
         clickAboutButton();

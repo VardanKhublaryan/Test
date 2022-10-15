@@ -154,12 +154,10 @@ public class HomePageClass extends BasePage {
         String image2Url = imageItems.get(randomIndex2).getAttribute("src");
 
         driver.navigate().to(image1Url);
-        Screenshot screenshot1 = new AShot().coordsProvider(new WebDriverCoordsProvider()).
-                takeScreenshot(driver);
+        Screenshot screenshot1 = new AShot().coordsProvider(new WebDriverCoordsProvider()).takeScreenshot(driver);
         driver.navigate().back();
         driver.navigate().to(image2Url);
-        Screenshot screenshot2 = new AShot().coordsProvider(new WebDriverCoordsProvider()).
-                takeScreenshot(driver);
+        Screenshot screenshot2 = new AShot().coordsProvider(new WebDriverCoordsProvider()).takeScreenshot(driver);
         driver.navigate().back();
 
 
@@ -214,7 +212,7 @@ public class HomePageClass extends BasePage {
         return isDisplayed(menuBarClosed);
     }
 
-    public static void clickOnCloseMenuBar(){
+    public static void clickOnCloseMenuBar() {
         click(closeMenuBar);
     }
 

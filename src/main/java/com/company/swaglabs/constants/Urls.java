@@ -8,6 +8,7 @@ public enum Urls {
     Urls(String url) {
         this.url = url;
     }
+
     public String toString(){
         return this.url;
     }

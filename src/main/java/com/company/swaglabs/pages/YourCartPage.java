@@ -148,7 +148,7 @@ public class YourCartPage extends BasePage {
     }
 
     public static boolean checkTax() {
-        return itemTotalGetNumber() / getTaxValue() >= 12.4 || itemTotalGetNumber() / getTaxValue() <= 12.5;
+        return itemTotalGetNumber() / getTaxValue() >= 12.4 && itemTotalGetNumber() / getTaxValue() <= 12.5;
     }
 
     public static Float getTotalNumber() {

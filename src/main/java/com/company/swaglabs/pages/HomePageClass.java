@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
+import static com.company.swaglabs.components.Header.getAllItems;
 import static com.company.swaglabs.constants.Urls.HOMEPAGE_URL;
 import static com.company.swaglabs.utils.CustomWebElement.click;
 import static com.company.swaglabs.utils.CustomWebElement.isDisplayed;
@@ -55,8 +56,10 @@ public class HomePageClass extends BasePage {
     private static WebElement checkOutButton;
     @FindBy(className = "shopping_cart_badge")
     private static WebElement shoppingCartBadge;
-    @FindBy(id = "logout_sidebar_link")
-    private static WebElement logOut;
+    @FindBy(css = "[aria-hidden='true']")
+    private static WebElement menuBarClosed;
+    @FindBy(id = "react-burger-cross-btn")
+    private static WebElement closeMenuBar;
 
 
     public HomePageClass(WebDriver driver) {
@@ -65,8 +68,8 @@ public class HomePageClass extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public  void allItemsVisibilityOf() {
-        isDisplayed(getHeader().getAllItems());
+    public static void allItemsVisibilityOf() {
+        isDisplayed(getAllItems());
     }
 
     public static boolean isImageItemDisplayed(int index) {
@@ -207,8 +210,12 @@ public class HomePageClass extends BasePage {
         return shoppingCartBadge.getText();
     }
 
-    public static void clickToLogOutButton() {
-        click(logOut);
+    public static boolean menuBarIsClosed() {
+        return isDisplayed(menuBarClosed);
+    }
+
+    public static void clickOnCloseMenuBar(){
+        click(closeMenuBar);
     }
 
 }

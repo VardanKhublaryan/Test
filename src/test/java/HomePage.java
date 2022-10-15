@@ -47,16 +47,31 @@ public class HomePage extends BaseTest {
 
     @Test()
     public void menuBar() {
-        HomePageClass homePageClass = new HomePageClass(getDriver());
         menuBarIsVisibility();
         clickOnMenuBar();
-        homePageClass.allItemsVisibilityOf();
+        allItemsVisibilityOf();
+    }
+
+    @Test
+    public void closeMenuBar(){
+        clickOnMenuBar();
+        clickOnCloseMenuBar();
+        Assert.assertTrue(menuBarIsClosed());
+    }
+
+    @Test
+    public void allItems(){
+        clickOnShopContainer();
+        clickOnMenuBar();
+        clickAllItemsButton();
+        Assert.assertTrue(addToCardIsDisplayed());
     }
 
     @Test
     public void logOut(){
+        new Header(getDriver());
         menuBar();
-        clickToLogOutButton();
+        new BasePage().getHeader().clickOnLogOutButton();
         Assert.assertTrue(logoVisibilityOf());
     }
 

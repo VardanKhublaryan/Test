@@ -24,6 +24,8 @@ public class Header {
     private static WebElement about;
     @FindBy(className = "nav-image-link")
     private static WebElement iconInAboutPage;
+    @FindBy(id = "logout_sidebar_link")
+    private static WebElement logOut;
 
     public Header(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -32,7 +34,7 @@ public class Header {
     }
 
     public static void clickOnMenuBar() {
-        menuBar.click();
+        click(menuBar);
     }
 
     public static boolean menuBarIsVisibility() {
@@ -50,7 +52,11 @@ public class Header {
         return isDisplayed(logo);
     }
 
-    public WebElement getAllItems() {
+    public static void clickAllItemsButton(){
+        click(allItems);
+    }
+
+    public static WebElement getAllItems() {
         return allItems;
     }
 
@@ -60,6 +66,10 @@ public class Header {
 
     public static boolean iconIsDisplayed(){
         return isDisplayed(iconInAboutPage);
+    }
+
+    public  void clickOnLogOutButton(){
+        click(logOut);
     }
 
 }

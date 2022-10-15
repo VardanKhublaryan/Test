@@ -12,12 +12,12 @@ import java.time.Duration;
 import static com.company.swaglabs.constants.LogInData.*;
 
 public class WaitHelper {
-    private static WebDriver driver = CustomWebDriver.getDriver();
+    private static final WebDriver DRIVER = CustomWebDriver.getDriver();
 
 
     public static void waitUntilElementClickable(WebElement webElement) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger()));
+            WebDriverWait wait = new WebDriverWait(DRIVER, Duration.ofSeconds(TIME_OUT.toInteger()));
             wait.until(ExpectedConditions.visibilityOf(webElement));
             wait.until(ExpectedConditions.elementToBeClickable(webElement));
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class WaitHelper {
 
     public static void waitUntilElementSelected(WebElement webElement) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger()));
+            WebDriverWait wait = new WebDriverWait(DRIVER, Duration.ofSeconds(TIME_OUT.toInteger()));
             wait.until(ExpectedConditions.visibilityOf(webElement));
             wait.until(ExpectedConditions.elementToBeSelected(webElement));
         } catch (Exception e) {
@@ -37,7 +37,7 @@ public class WaitHelper {
 
     public static boolean waitForJQueryToLoad() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIME_OUT.toInteger()));
+        WebDriverWait wait = new WebDriverWait(DRIVER, Duration.ofSeconds(TIME_OUT.toInteger()));
         ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver driver) {

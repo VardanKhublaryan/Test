@@ -10,8 +10,8 @@ import java.time.Duration;
 import static com.company.swaglabs.utils.WaitHelper.*;
 
 public class CustomWebElement {
-    private static WebDriver driver = CustomWebDriver.getDriver();
-    private static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(8));;
+    private static final WebDriver DRIVER = CustomWebDriver.getDriver();
+    private static final WebDriverWait WAIT = new WebDriverWait(DRIVER, Duration.ofSeconds(10));
 
     public CustomWebElement() {
     }
@@ -19,7 +19,7 @@ public class CustomWebElement {
 
     public static boolean isDisplayed(WebElement webElement) {
         try {
-            wait.until(ExpectedConditions.visibilityOf(webElement));
+            WAIT.until(ExpectedConditions.visibilityOf(webElement));
             return webElement.isDisplayed();
         } catch (Exception e) {
             System.out.println(e + webElement.getText() + "is not displayed");

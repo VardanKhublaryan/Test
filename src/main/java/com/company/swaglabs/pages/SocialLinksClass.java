@@ -14,7 +14,7 @@ public class SocialLinksClass extends BasePage {
     private static WebDriver driver;
     @FindBy(css = "[class='r-1cvl2hr r-4qtqp9 r-yyyyoo r-16y2uox r-8kz0gk r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp']")
     private WebElement twitterLogo;
-    @FindBy(linkText = "Watch Video")
+    @FindBy(css = "[class='xbh8q5q x1pwv2dq xvlca1e']")
     private WebElement facebookElement;
     @FindBy(className = "background")
     private WebElement linkedInIcon;

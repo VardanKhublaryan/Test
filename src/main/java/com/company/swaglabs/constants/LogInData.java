@@ -10,7 +10,9 @@ public enum LogInData {
     TIME_OUT(5),
     INVALID_LOGIN("SSS"),
     INVALID_PASS("AAAA"),
-    INVALID_USER_ERROR("Epic sadface: Username and password do not match any user in this service");
+    INVALID_USER_ERROR("Epic sadface: Username and password do not match any user in this service"),
+    WITH_OUT_PASS_ERROR("Epic sadface: Password is required"),
+    WITH_OUT_USER_NAME_ERROR("Epic sadface: Username is required");
 
     private String userName;
     private Integer time;

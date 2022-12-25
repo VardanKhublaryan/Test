@@ -28,7 +28,7 @@ public class LoginPageClass extends BasePage {
     @FindBy(className = "error-message-container")
     private static WebElement loginError;
     @FindBy(css = "[class='error-message-container error']")
-    private static WebElement loginErrorText;
+    private static WebElement loginButtonErrorText;
 
 
     public LoginPageClass(WebDriver driver) {
@@ -57,16 +57,24 @@ public class LoginPageClass extends BasePage {
         return loginError.getText();
     }
 
-    public static String getLoginErrorText() {
-        return loginErrorText.getText();
+    public static String getLoginButtonErrorText() {
+        return loginButtonErrorText.getText();
     }
 
     public static String getErrorColor() {
-        String color = loginErrorText.getCssValue("background-color");
+        String color = loginButtonErrorText.getCssValue("background-color");
         return Color.fromString(color).asHex();
-
     }
 
+    public static void loginWithOutPass(LogInData logIn){
+        fill(loginField,logIn.toString());
+        click(loginButton);
+    }
+
+    public static void loginWithOutUserName(LogInData logIn){
+        fill(passwordField,logIn.toString());
+        click(loginButton);
+    }
     @Override
     protected void load() {
         driver.get(LOGINPAGE_URL.toString());

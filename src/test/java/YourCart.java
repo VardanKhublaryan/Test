@@ -51,21 +51,21 @@ public class YourCart extends BaseTest {
     }
 
     @Test
-    public void errorMessage(){
+    public void errorMessage() {
         clickToCheckOutButton();
         clickContinueButton();
-        Assert.assertEquals(getErrorMessage(),ERROR_MESSAGE.toString());
+        Assert.assertEquals(getErrorMessage(), ERROR_MESSAGE.toString());
     }
 
     @Test
-    public void fieldsErrorMessages(){
+    public void fieldsErrorMessages() {
         clickToCheckOutButton();
         fillFirstName();
         clickContinueButton();
-        Assert.assertEquals(getErrorMessage(),LASTNAME_ERROR_MESSAGE.toString());
+        Assert.assertEquals(getErrorMessage(), LASTNAME_ERROR_MESSAGE.toString());
         fillLastName();
         clickContinueButton();
-        Assert.assertEquals(getErrorMessage(),POSTAL_CODE_ERROR_MESSAGE.toString());
+        Assert.assertEquals(getErrorMessage(), POSTAL_CODE_ERROR_MESSAGE.toString());
     }
 
     @Test

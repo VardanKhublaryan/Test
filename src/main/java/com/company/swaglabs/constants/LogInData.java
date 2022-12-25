@@ -7,7 +7,10 @@ public enum LogInData {
     PERFORMANCE_GLITCH_USER("performance_glitch_user"),
     PASSWORD("secret_sauce"),
     FOOTER_TEXT(" 2022 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy"),
-    TIME_OUT(5);
+    TIME_OUT(5),
+    INVALID_LOGIN("SSS"),
+    INVALID_PASS("AAAA"),
+    INVALID_USER_ERROR("Epic sadface: Username and password do not match any user in this service");
 
     private String userName;
     private Integer time;

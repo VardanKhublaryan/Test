@@ -37,14 +37,13 @@ public class CustomWebDriver {
     }
 
 
-
     public static WebDriver getDriver(){
-        if (driver == null && browserName.equalsIgnoreCase(chrome)) {
+        if (driver == null && BROWSER_NAME.equalsIgnoreCase(CHROME)) {
             driver = new ChromeDriver(setOptions());
-        } else if (driver == null && browserName.equalsIgnoreCase(edge)) {
+        } else if (driver == null && BROWSER_NAME.equalsIgnoreCase(EDGE)) {
             System.setProperty("webdriver.edge.driver", "src/main/resources/msedgedriver.exe");
             driver = new EdgeDriver(edgeOptions());
-        } else if (driver == null && browserName.equalsIgnoreCase(firefox)) {
+        } else if (driver == null && BROWSER_NAME.equalsIgnoreCase(FIREFOX)) {
             System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
             driver = new FirefoxDriver();
             driver.manage().window().maximize();

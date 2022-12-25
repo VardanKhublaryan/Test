@@ -14,7 +14,7 @@ public class SocialLinksClass extends BasePage {
     private static WebDriver driver;
     @FindBy(css = "[class='r-1cvl2hr r-4qtqp9 r-yyyyoo r-16y2uox r-8kz0gk r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp']")
     private WebElement twitterLogo;
-    @FindBy(css = "[class='xbh8q5q x1pwv2dq xvlca1e']")
+    @FindBy(css = "[class='x1pwv2dq xvlca1e xbh8q5q']")
     private WebElement facebookElement;
     @FindBy(className = "background")
     private WebElement linkedInIcon;
@@ -49,7 +49,6 @@ public class SocialLinksClass extends BasePage {
             if (!mainWindow.equalsIgnoreCase(ChildWindow)) {
                 driver.switchTo().window(ChildWindow);
             }
-
         }
         return isDisplayed(twitterLogo);
     }
@@ -62,7 +61,6 @@ public class SocialLinksClass extends BasePage {
             if (!mainWindow.equalsIgnoreCase(ChildWindow)) {
                 driver.switchTo().window(ChildWindow);
             }
-
         }
         return isDisplayed(facebookElement);
     }
@@ -75,7 +73,6 @@ public class SocialLinksClass extends BasePage {
             if (!mainWindow.equalsIgnoreCase(ChildWindow)) {
                 driver.switchTo().window(ChildWindow);
             }
-
         }
         return isDisplayed(linkedInIcon);
     }

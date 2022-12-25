@@ -1,6 +1,4 @@
-import com.company.swaglabs.components.Header;
 import com.company.swaglabs.constants.ItemsTexts;
-import com.company.swaglabs.pages.BasePage;
 import com.company.swaglabs.pages.HomePageClass;
 import com.company.swaglabs.pages.LoginPageClass;
 import org.testng.Assert;
@@ -11,7 +9,8 @@ import org.testng.asserts.SoftAssert;
 import static com.company.swaglabs.components.Header.*;
 import static com.company.swaglabs.constants.LogInData.*;
 import static com.company.swaglabs.pages.HomePageClass.*;
-import static com.company.swaglabs.pages.LoginPageClass.*;
+import static com.company.swaglabs.pages.LoginPageClass.loginn;
+import static com.company.swaglabs.pages.LoginPageClass.logoVisibilityOf;
 import static com.company.swaglabs.utils.CustomWebDriver.getDriver;
 
 @Test
@@ -41,7 +40,6 @@ public class HomePage extends BaseTest {
 
     @Test
     public void logo() {
-        new Header(getDriver());
         Assert.assertTrue(logoIsDisplayed());
     }
 
@@ -69,15 +67,14 @@ public class HomePage extends BaseTest {
 
     @Test
     public void logOut() {
-        new Header(getDriver());
+        HomePageClass homePageClass = new HomePageClass(getDriver());
         menuBar();
-        new BasePage().getHeader().clickOnLogOutButton();
+        homePageClass.getHeader().clickOnLogOutButton();
         Assert.assertTrue(logoVisibilityOf());
     }
 
     @Test
     public void about() {
-        new Header(getDriver());
         menuBar();
         clickAboutButton();
         Assert.assertTrue(iconIsDisplayed());
@@ -169,9 +166,9 @@ public class HomePage extends BaseTest {
 
     @Test
     public void footer() {
-        BasePage basePage = new BasePage();
-        basePage.getFooter().FooterRobotVisibilityOf();
-        Assert.assertEquals(basePage.getFooter().footerTex(), FOOTER_TEXT.toString());
+        HomePageClass homePage = new HomePageClass(getDriver());
+        homePage.getFooter().FooterRobotVisibilityOf();
+        Assert.assertEquals(homePage.getFooter().footerTex(), FOOTER_TEXT.toString());
     }
 
 

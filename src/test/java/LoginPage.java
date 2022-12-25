@@ -40,4 +40,18 @@ public class LoginPage extends BaseTest {
         Header.clickOnMenuBar();
         Assert.assertTrue(menuBarIsVisibility(), "going to home page failed");
     }
+
+    @Test
+    public void invalidUser() {
+        new LoginPageClass(getDriver());
+        loginn(INVALID_LOGIN,INVALID_PASS);
+        Assert.assertEquals(getLoginErrorText(),INVALID_USER_ERROR.toString());
+    }
+
+    @Test
+    public void errorMsgColor(){
+        invalidUser();
+        new LoginPageClass(getDriver());
+        Assert.assertEquals(getErrorColor(),"#e2231a");
+    }
 }

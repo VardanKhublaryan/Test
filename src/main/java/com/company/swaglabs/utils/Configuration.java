@@ -6,11 +6,11 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class Configuration {
-    public static final String browserName =getPropValues("browser_name");
+    public static final String BROWSER_NAME =getPropValues("browser_name");
 
-    public static final String chrome = getPropValues("chrome_browser");
-    public static final String edge = getPropValues("edge_browser");
-    public static final String firefox = getPropValues("firefox_browser");
+    public static final String CHROME = getPropValues("chrome_browser");
+    public static final String EDGE = getPropValues("edge_browser");
+    public static final String FIREFOX = getPropValues("firefox_browser");
 
     private static Properties getPropValues() throws IOException {
         InputStream inputStream = null;

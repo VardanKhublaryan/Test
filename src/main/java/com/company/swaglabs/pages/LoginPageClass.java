@@ -3,6 +3,7 @@ package com.company.swaglabs.pages;
 import com.company.swaglabs.constants.LogInData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -26,10 +27,11 @@ public class LoginPageClass extends BasePage {
     private static WebElement logo;
     @FindBy(className = "error-message-container")
     private static WebElement loginError;
+    @FindBy(css = "[class='error-message-container error']")
+    private static WebElement loginErrorText;
 
 
-
-    public LoginPageClass(WebDriver driver){
+    public LoginPageClass(WebDriver driver) {
         super();
         isLoaded();
         this.driver = driver;
@@ -53,6 +55,16 @@ public class LoginPageClass extends BasePage {
     public static String getErrorMsg() {
         isDisplayed(loginError);
         return loginError.getText();
+    }
+
+    public static String getLoginErrorText() {
+        return loginErrorText.getText();
+    }
+
+    public static String getErrorColor() {
+        String color = loginErrorText.getCssValue("background-color");
+        return Color.fromString(color).asHex();
+
     }
 
     @Override
